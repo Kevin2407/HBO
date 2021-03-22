@@ -5,3 +5,25 @@
 .logo{
     width: 80px;
 }
+
+.logoFooter{
+    width: 130px
+}
+
+.color-de-icono{
+    color: whitesmoke;
+}
+
+.lista{
+    color: whitesmoke;
+    list-style: none;
+    padding: 0;
+}
+
+
+@media all and (max-width:576px){
+    .slider-responsive{
+        object-fit: cover;
+        height: 187px;
+    }
+}
