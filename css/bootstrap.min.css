@@ -6020,7 +6020,7 @@ a.close.disabled {
   }
 }
 .carousel-control-next,
-.carousel-control-prev {
+.carousel-control-prev{
   position: absolute;
   top: 0;
   bottom: 0;
@@ -6031,10 +6031,10 @@ a.close.disabled {
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 15%;
+  width: 3%;
   color: #fff;
   text-align: center;
-  opacity: 0.5;
+  opacity: 0;
   transition: opacity 0.15s ease;
 }
 @media (prefers-reduced-motion: reduce) {
