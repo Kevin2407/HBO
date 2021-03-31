@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Kevin Martín" />
-  <meta name="description" content="Pagina de HBO, login">
+  <meta name="description" content="Pagina de HBO">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
   <meta name="keyword" content="HBO, peliculas, series, ver, entretenimiento, estrenos" />
-  <title>Ingresa</title>
+  <title>HBO</title>
 </head>
 
 <body class="bodyClaro">
@@ -35,7 +35,7 @@
               <a class="nav-link" href="acerca-de.html">Acerca de</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="login.html">Ingresar</a>
+              <a class="nav-link" href="login.html">Ingresar</a>
             </li>
           </ul>
         </div>
@@ -44,12 +44,15 @@
   </header>
   <main>
     <section class="seccionOscura">
-      <h4>Inicie sesion</h4>
-      <input class="login-input" type="email" name="email" id="email" placeholder="Email de usuario">
-      <input class="login-input" type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña">
-      <Button type="button" class="btn">Ingrese</Button>
-      <p class="login-text">¿Olvidaste la <a href="error404.html">contraseña</a>?</p>
-      <p class="login-text">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+        <h4>Registro</h4>
+        <input class="login-input" type="text" name="nombreApellido" id="nombreApellido" placeholder="Nombre y apellido">
+        <input class="login-input" type="text" name="nombre de Usuario" id="nombreUsuario" placeholder="Nombre de usuario">
+        <input class="login-input" type="email" name="email" id="email" placeholder="E-mail">
+        <input class="login-input" type="tel" name="numero de telefono" id="numeroTelefono" placeholder="Numero de Telefono">
+        <input class="login-input" type="password" name="contraseña" id="contraseniaR" placeholder="Contraseña">
+        
+        <p class="text-light"><input class="" type="checkbox" name="derechos" id="derechos">  Acepto los <a href="error404.html">terminos y condiciones</a></p>
+        <Button type="button" class="btn">Registrarse</Button>
     </section>
   </main>
   <footer class="bg-dark color-de-icono py-5">
