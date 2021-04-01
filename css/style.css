@@ -207,3 +207,17 @@ body{
 
     }
 }
+
+/* equipo */
+
+.equipoSeccion{
+    margin: 30px 0;
+    padding: 0 0;
+    text-align: center;
+}
+
+.equipoImg{
+    width: 250px;
+    border-radius: 4px;
+    border: solid ;
+}
