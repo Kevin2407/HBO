@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kevin Martín" />
+    <meta name="description" content="Pagina de HBO">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
+    <meta name="keyword" content="HBO, peliculas, series, ver, entretenimiento, estrenos" />
+    <title>HBO</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="img/HBOgo-logo.png" alt="logo de HBO"
+                        class="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Ingresar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container my-5 seccionAdmin">
+        <section class="row">
+            <div class="col-10">
+                <h3>Peliculas disponibles</h3>
+            </div>
+            <div class="col-2 derecha">
+                <button class="btn btn-success btnRedondo" type="button" data-bs-toggle="modal"
+                    data-bs-target="#modalPelis">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </section>
+        <section class="table-responsive">
+            <table class="table" id="tablaPelis">
+                <thead>
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Publicado</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaPelis">
+                    <tr>
+                        <th scope="row"></th>
+                        <td scope="row"></td>
+                        <td scope="row"></td>
+                        <td scope="row"></td>
+                        <td scope="row"></td>
+                        <td scope="row"></td>
+                        <td class="">
+                                <button class="btn btn-primary bPaddEdit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger bPaddTrash">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <button type="button" class="m-0 p-0" onclick="destacar(estrella)"><i class="far fa-star fa-2x text-warning" id="star" ></i></button>
+                            
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- modal Pelis -->
+    <div class="modal fade" id="modalPelis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  textOscuro">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar pelicula/serie </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label>Código</label>
+                            <input type="text"  id="nombrePeli"
+                                class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label>Nombre</label>
+                            <input type="text"  id="nombrePeli"
+                                class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label>Categoria</label>
+                            <input type="text"  id="nombrePeli"
+                                class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label>Descripción</label>
+                            <input type="text"  id="nombrePeli"
+                                class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label>Publicar</label>
+                            <input type="text"  id="nombrePeli"
+                                class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label>Imagen</label>
+                            <input type="text"  id="nombrePeli"
+                                class="form-control">
+                        </div>
+                        <button class="btn btn-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark color-de-icono py-5">
+        <section class="container">
+            <article class="row text-secondary mt-3">
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <a class="navbar-brand" href="index.html"><img src="img/HBO-logo.png" alt="logo de HBO"
+                            class="logoFooter"></a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <ul class="lista">
+                        <li>
+                            <a href="index.html" class="text-secondary">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="contacto.html" class="text-secondary">Contacto</a>
+                        </li>
+                        <li>
+                            <a href="acerca-de.html" class="text-secondary">Acerca de</a>
+                        </li>
+                        <li><a href="login.html" class="text-secondary">Login</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <h6>Nuestras redes sociales</h4>
+                        <a href="https://www.facebook.com/HBOLatAm" target="blank" class="me-2 color-de-icono"><i
+                                class="fab fa-facebook-square fa-3x"></i></a>
+                        <a href="https://twitter.com/HBOLAT" target="blank" class="me-2 color-de-icono"><i
+                                class="fab fa-twitter-square fa-3x"></i></a>
+                        <a href="https://www.instagram.com/hbolatam/" target="blank" class="me-2 color-de-icono"><i
+                                class="fab fa-instagram-square fa-3x"></i></a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <p>Todos los derechos reservados &copy;</p>
+                </div>
+            </article>
+        </section>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
