@@ -52,8 +52,7 @@
                 <h3>Peliculas disponibles</h3>
             </div>
             <div class="col-2 derecha">
-                <button class="btn btn-success btnRedondo" type="button" data-bs-toggle="modal"
-                    data-bs-target="#modalPelis">
+                <button class="btn btn-success btnRedondo" id="btnModalOpen">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
@@ -71,26 +70,8 @@
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
-                <tbody id="listaPelis">
-                    <tr>
-                        <th scope="row"></th>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td class="">
-                            <button class="btn btn-primary bPaddEdit">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-danger bPaddTrash">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <i class="far fa-star fa-2x text-warning" onclick="destacar(this)" id="star"></i>
-
-
-                        </td>
-                    </tr>
+                <tbody id="tBodyPelis">
+                   
                 </tbody>
             </table>
         </section>
