@@ -19,6 +19,8 @@ btnModalOpen.addEventListener("click", () => {
   modalPelis.show();
 });
 
+leerDatos();
+
 window.agregarPeli = function (event) {
   event.preventDefault();
   let alerta = document.getElementById("msjEnvio");
@@ -54,6 +56,10 @@ window.agregarPeli = function (event) {
     // mostrar cartel de datos guardados
     limpiarFormulario();
 
+    //    leer datos
+
+    leerDatos();
+
     // cerrar la ventana modal
 
     modalPelis.hide();
@@ -63,9 +69,7 @@ window.agregarPeli = function (event) {
       alerta.className = "alert alert-danger mx-3 d-none";
     }
 
-    //    leer datos
 
-    leerDatos();
   } else {
     alerta.className = "alert alert-danger mx-3";
     alerta.innerHTML = "Ocurrio un error, verifique los datos ingresados.";
@@ -107,22 +111,21 @@ function dibujarDatos(_listaPelisProvisoria) {
   // TablaPelis.innerHTML = '';
   let codigoHTML = "";
 
-  console.log(_listaPelisProvisoria)
 
-  for (let i = 0; i < _listaPelisProvisoria.length ; i++){
+  for(let i in _listaPelisProvisoria){
     codigoHTML = `
         <tr>
         <th scope="row">${_listaPelisProvisoria[i].codigo}</th>
         <td scope="row">${_listaPelisProvisoria[i].nombre}</td>
         <td scope="row">${_listaPelisProvisoria[i].categoria}</td>
-        <td scope="row">${_listaPelisProvisoria[i].descripcion}</td>
+        <td scope="row">${_listaPelisProvisoria[i].descripcion.substring(0, 20)+"..."}</td>
         <td scope="row">${_listaPelisProvisoria[i].publicado}</td>
         <td scope="row">${_listaPelisProvisoria[i].imagen}</td>
         <td class="">
             <button class="btn btn-primary bPaddEdit">
                 <i class="fas fa-edit"></i>
             </button>
-            <button class="btn btn-danger bPaddTrash">
+            <button class="btn btn-danger bPaddTrash" onclick="eliminarPeli(this)" id="${_listaPelisProvisoria[i].codigo}">
                 <i class="fas fa-trash-alt"></i>
             </button>
             <i class="far fa-star fa-2x text-warning" onclick="destacar(this)" id="star"></i>
@@ -130,6 +133,28 @@ function dibujarDatos(_listaPelisProvisoria) {
     </tr>
         `;
 
+    }
     TablaPelis.innerHTML += codigoHTML;
-  }
+}
+
+
+window.eliminarPeli = function (peli){
+    Swal.fire({
+        title: '¿Estas seguro?',
+        text: "Si lo haces, no podras revertirlo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Si, borrar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            '¡Borrado!',
+            'La pelicula fue borrada',
+            'success'
+          )
+        }
+      })
 }
