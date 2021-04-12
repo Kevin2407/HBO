@@ -33,7 +33,8 @@ window.agregarPeli = function () {
     veriCod(document.getElementById("codigo")) &&
     veriTexto(document.getElementById("nombrePeli")) &&
     veriTexto(document.getElementById("descripcion")) &&
-    validImg(document.getElementById("img"))
+    validImg(document.getElementById("img"))&&
+    veriTexto(document.getElementsByTagName('video'))
   ) {
     // crear nueva peli
     let nuevaPeli = new Pelicula(
@@ -42,7 +43,10 @@ window.agregarPeli = function () {
       document.getElementById("categoria").value,
       document.getElementById("descripcion").value,
       document.getElementById("publiCheck").value,
-      document.getElementById("img").value
+      document.getElementById("img").value,
+      document.getElementById("video").value,
+
+
     );
 
     // guardar peli en la lista
@@ -90,6 +94,7 @@ function limpiarFormulario() {
   document.getElementById("descripcion").className = "form-control";
   document.getElementById("publiCheck").className = "form-check-input";
   document.getElementById("img").className = "form-control";
+  document.getElementById("video").className = "form-control";
 
   // // alert de se enviaron los datos
 
@@ -194,6 +199,7 @@ document.getElementById('categoria').value = peliEncontrada.categoria;
 document.getElementById('descripcion').value = peliEncontrada.descripcion;
 document.getElementById('publiCheck').value = peliEncontrada.publicado;
 document.getElementById('img').value = peliEncontrada.imagen;
+document.getElementById('video').value = peliEncontrada.video;
 
 
 
@@ -219,11 +225,6 @@ window.guardarPeli = function (event){
   }
 }
 
-if(existePeli === true){
-// document.getElementById("tituloModal").innerHTML = "Modificar Pelicula/Serie";
-// document.getElementById("labelCodigo").innerHTML = "Codigo";
-// document.getElementById('codigo').setAttribute("disabled", "");
-}
 
 function actualizarDatosPelis(){
   let codigo = document.getElementById('codigo').value;
@@ -232,6 +233,8 @@ function actualizarDatosPelis(){
   let descripcion = document.getElementById('descripcion').value;
   let publiCheck = document.getElementById('publiCheck').value;
   let imagen = document.getElementById('img').value;
+  let video = document.getElementById('video').value;
+
 
   for(let i in listaPelis){
     if(listaPelis[i].codigo === codigo){
@@ -240,6 +243,7 @@ function actualizarDatosPelis(){
       listaPelis[i].descripcion = descripcion;
       listaPelis[i].publicado = publiCheck;
       listaPelis[i].imagen = imagen;
+      listaPelis[i].video = video;
     }
   }
 
@@ -251,11 +255,6 @@ function actualizarDatosPelis(){
     'Los datos de la pelicula han sido modificados',
     'success'
   );
-
-// document.getElementById("tituloModal").innerHTML = "Agregar Pelicula/Serie"
-// document.getElementById("labelCodigo").innerHTML = 'Código <span class="text-danger">*</span>'
-// document.getElementById('codigo').removeAttribute("disabled");
-
 
   leerDatos();
 } 

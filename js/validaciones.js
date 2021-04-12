@@ -33,7 +33,7 @@ function publicar(checkbox){
 
 
 function validImg(img){
-    if (img.value != "" && (/\.(jpg|png|gif)$/i).test(img.value)) {
+    if (img.value != "" && (/\.(jpg|png|gif|webp)$/i).test(img.value)) {
         img.className = "form-control is-valid";
         return true;
       }else{
