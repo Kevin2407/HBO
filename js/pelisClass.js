@@ -1,4 +1,3 @@
-
 export class Pelicula{
     constructor(codigo, nombre, categoria, descripcion, publicado, imagen, video){
         this.codigo = codigo;

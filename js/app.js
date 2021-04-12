@@ -53,38 +53,39 @@ function leerPelicula(){
 }
 
 function dibujarPeli(){
-    let informacionPelis = '';
-    let img = "";
     drama.innerHTML = "";
     accion.innerHTML = "";
     comedia.innerHTML = "";
     infantil.innerHTML = "";
 
     for(let i in categoriaDrama){
-        let dramaHTML = `<article class="col-sm-6 col-md-4 col-lg-3" id="${categoriaDrama[i].codigo}">
-        <a href="detalle.html"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="" class="imgSeries my-4"></a>
+        let dramaHTML = `<article class="col-sm-6 col-md-4 col-lg-3" >
+        <a href="detalle.html" id="${categoriaDrama[i].codigo}" onclick="dibujarDetalle(this.id)"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries my-4"></a>
       </article>`;
       drama.innerHTML += dramaHTML;
     }
 
     for(let i in categoriaAccion){
-        let accionHTML = `<article class="col-sm-6 col-md-4 col-lg-3" id="${categoriaAccion[i].codigo}">
-        <a href="detalle.html"><img src="img/series/drama/${categoriaAccion[i].imagen}" alt="" class="imgSeries my-4"></a>
+        let accionHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
+        <a href="detalle.html" id="${categoriaAccion[i].codigo}"><img src="img/series/drama/${categoriaAccion[i].imagen}" alt="Pelicula/serie ${categoriaAccion[i].nombre}" class="imgSeries my-4"></a>
       </article>`;
       accion.innerHTML += accionHTML;
     }
 
     for(let i in categoriaComedia){
-        let comediaHTML = `<article class="col-sm-6 col-md-4 col-lg-3" id="${categoriaComedia[i].codigo}">
-        <a href="detalle.html"><img src="img/series/drama/${categoriaComedia[i].imagen}" alt="" class="imgSeries my-4"></a>
+        let comediaHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
+        <a href="detalle.html" id="${categoriaComedia[i].codigo}"><img src="img/series/drama/${categoriaComedia[i].imagen}" alt="Pelicula/serie ${categoriaComedia[i].nombre}" class="imgSeries my-4"></a>
       </article>`;
       comedia.innerHTML += comediaHTML;
     }
 
     for(let i in categoriaInfantiles){
-        let infantilHTML = `<article class="col-sm-6 col-md-4 col-lg-3" id="${categoriaInfantiles[i].codigo}">
-        <a href="detalle.html"><img src="img/series/drama/${categoriaInfantiles[i].imagen}" alt="" class="imgSeries my-4"></a>
+        let infantilHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
+        <a href="detalle.html" id="${categoriaInfantiles[i].codigo}"><img src="img/series/drama/${categoriaInfantiles[i].imagen}" alt="Pelicula/serie ${categoriaInfantiles[i].nombre}" class="imgSeries my-4"></a>
       </article>`;
       infantil.innerHTML += infantilHTML;
     }
+
 }
+
+
