@@ -82,13 +82,13 @@
         <div class="modal-dialog  textOscuro">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar pelicula/serie </h5>
+                    <h5 class="modal-title" id="tituloModal">Agregar pelicula/serie </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form onsubmit="agregarPeli(event)" id="formPeliculas">
+                    <form onsubmit="guardarPeli(event)" id="formPeliculas">
                         <div class="mb-3">
-                            <label class="form-label">Código <span class="text-danger">*</span></label>
+                            <label class="form-label" id="labelCodigo">Código <span class="text-danger">*</span></label>
                             <input type="num" id="codigo" class="form-control" onblur="veriCod(this)">
                             <div class="valid-feedback">
                             </div>
@@ -135,7 +135,7 @@
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">
-                                <p></p>
+                                <p>Tiene que agregar un formato de imagen (.jpg</p>
                             </div>
                         </div>
                         <div class="alert alert-success mx-3 d-none" role="alert" id='msjEnvio'></div>

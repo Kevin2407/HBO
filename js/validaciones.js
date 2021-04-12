@@ -25,7 +25,11 @@ function publicar(checkbox){
     if(checkbox.checked){ 
         checkbox.className = 'form-check-input is-valid';
         return true;
+}else{
+  return false
 }}
+
+
 
 
 function validImg(img){

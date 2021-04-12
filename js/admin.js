@@ -16,13 +16,18 @@ const modalPelis = new bootstrap.Modal(document.getElementById("modalPelis"));
 
 let btnModalOpen = document.getElementById("btnModalOpen");
 btnModalOpen.addEventListener("click", () => {
+  limpiarFormulario();
+  document.getElementById("tituloModal").innerHTML = "Agregar Pelicula/Serie";
+  document.getElementById("labelCodigo").innerHTML = 'Código <span class="text-danger">*</span>';
+  document.getElementById('codigo').removeAttribute("disabled");
   modalPelis.show();
 });
 
+let existePeli = false;
+
 leerDatos();
 
-window.agregarPeli = function (event) {
-  event.preventDefault();
+window.agregarPeli = function () {
   let alerta = document.getElementById("msjEnvio");
   if (
     veriCod(document.getElementById("codigo")) &&
@@ -44,7 +49,7 @@ window.agregarPeli = function (event) {
     listaPelis.push(nuevaPeli);
 
     // guardar los datos en localStorage
-    localStorage.setItem("listaPelis", JSON.stringify(listaPelis));
+    localStorage.setItem("listaPelisKey", JSON.stringify(listaPelis));
 
     // alert de sweet alert 2
     Swal.fire(
@@ -67,13 +72,11 @@ window.agregarPeli = function (event) {
     // eliminar alert si es que apareció
     if ((alerta.className = "alert alert-danger mx-3")) {
       alerta.className = "alert alert-danger mx-3 d-none";
-    }
-
 
   } else {
     alerta.className = "alert alert-danger mx-3";
     alerta.innerHTML = "Ocurrio un error, verifique los datos ingresados.";
-  }
+  }}
 };
 
 function limpiarFormulario() {
@@ -92,14 +95,16 @@ function limpiarFormulario() {
 
   // document.getElementById('msjEnvio').className = 'alert alert-success mx-3';
   // document.getElementById('msjEnvio').innerHTML = '<p>Se a añadido una nueva película</p>'
+
+  existePeli = false;
 }
 
 function leerDatos() {
   // esta funcion se encargar de leer los datos almacenados en el localStorage
   if (localStorage.length > 0) {
-    let _listaPelisProvisoria = JSON.parse(localStorage.getItem("listaPelis"));
+    let _listaPelisProvisoria = JSON.parse(localStorage.getItem("listaPelisKey"));
 
-    if (listaPelis.length === 0) {
+    if (listaPelis.length === 0){
       listaPelis = _listaPelisProvisoria;
     }
     dibujarDatos(_listaPelisProvisoria);
@@ -108,8 +113,9 @@ function leerDatos() {
 
 function dibujarDatos(_listaPelisProvisoria) {
   let TablaPelis = document.getElementById("tBodyPelis");
-  // TablaPelis.innerHTML = '';
+  TablaPelis.innerHTML = '';
   let codigoHTML = "";
+
 
 
   for(let i in _listaPelisProvisoria){
@@ -122,7 +128,7 @@ function dibujarDatos(_listaPelisProvisoria) {
         <td scope="row">${_listaPelisProvisoria[i].publicado}</td>
         <td scope="row">${_listaPelisProvisoria[i].imagen}</td>
         <td class="">
-            <button class="btn btn-primary bPaddEdit">
+            <button class="btn btn-primary bPaddEdit" onclick="modificarPelis(this)" id="${_listaPelisProvisoria[i].codigo}">
                 <i class="fas fa-edit"></i>
             </button>
             <button class="btn btn-danger bPaddTrash" onclick="eliminarPeli(this)" id="${_listaPelisProvisoria[i].codigo}">
@@ -133,8 +139,8 @@ function dibujarDatos(_listaPelisProvisoria) {
     </tr>
         `;
 
-    }
-    TablaPelis.innerHTML += codigoHTML;
+        TablaPelis.innerHTML += codigoHTML;
+      }
 }
 
 
@@ -150,6 +156,15 @@ window.eliminarPeli = function (peli){
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
+          let pelisFiltradas = listaPelis.filter(function (pelicuFil){
+            return pelicuFil.codigo != peli.id;
+          })
+          listaPelis = pelisFiltradas;
+          localStorage.setItem('listaPelisKey', JSON.stringify(listaPelis));
+          leerDatos();
+
+
+
           Swal.fire(
             '¡Borrado!',
             'La pelicula fue borrada',
@@ -158,3 +173,89 @@ window.eliminarPeli = function (peli){
         }
       })
 }
+
+
+window.modificarPelis = function(btnEditar){
+
+// limpiar formulario
+limpiarFormulario()
+
+// buscar el objeto a modificar
+let peliEncontrada = listaPelis.find((pelic) =>{
+  return pelic.codigo === btnEditar.id;
+});
+
+
+// cargar los datos en el formulario
+
+document.getElementById('codigo').value = peliEncontrada.codigo;
+document.getElementById('nombrePeli').value = peliEncontrada.nombre;
+document.getElementById('categoria').value = peliEncontrada.categoria;
+document.getElementById('descripcion').value = peliEncontrada.descripcion;
+document.getElementById('publiCheck').value = peliEncontrada.publicado;
+document.getElementById('img').value = peliEncontrada.imagen;
+
+
+
+existePeli=true;
+
+document.getElementById("tituloModal").innerHTML = "Modificar Pelicula/Serie";
+document.getElementById("labelCodigo").innerHTML = "Codigo";
+document.getElementById('codigo').setAttribute("disabled", "");
+
+
+
+  modalPelis.show();
+}
+
+window.guardarPeli = function (event){
+  event.preventDefault();
+
+  if(existePeli === true){
+    actualizarDatosPelis()
+    
+  }else{
+    agregarPeli();
+  }
+}
+
+if(existePeli === true){
+// document.getElementById("tituloModal").innerHTML = "Modificar Pelicula/Serie";
+// document.getElementById("labelCodigo").innerHTML = "Codigo";
+// document.getElementById('codigo').setAttribute("disabled", "");
+}
+
+function actualizarDatosPelis(){
+  let codigo = document.getElementById('codigo').value;
+  let nombre = document.getElementById('nombrePeli').value;
+  let categoria = document.getElementById('categoria').value;
+  let descripcion = document.getElementById('descripcion').value;
+  let publiCheck = document.getElementById('publiCheck').value;
+  let imagen = document.getElementById('img').value;
+
+  for(let i in listaPelis){
+    if(listaPelis[i].codigo === codigo){
+      listaPelis[i].nombre = nombre;
+      listaPelis[i].categoria = categoria;
+      listaPelis[i].descripcion = descripcion;
+      listaPelis[i].publicado = publiCheck;
+      listaPelis[i].imagen = imagen;
+    }
+  }
+
+  localStorage.setItem('listaPelisKey', JSON.stringify(listaPelis));
+  limpiarFormulario();
+  modalPelis.hide();
+  Swal.fire(
+    'Modificación exitosa!',
+    'Los datos de la pelicula han sido modificados',
+    'success'
+  );
+
+// document.getElementById("tituloModal").innerHTML = "Agregar Pelicula/Serie"
+// document.getElementById("labelCodigo").innerHTML = 'Código <span class="text-danger">*</span>'
+// document.getElementById('codigo').removeAttribute("disabled");
+
+
+  leerDatos();
+} 
