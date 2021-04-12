@@ -51,9 +51,40 @@ function validarGeneral(event){
         veriTexto(document.getElementById('descripcion')) &&
         validImg(document.getElementById('img'))
         ){
-            console.log('pedo')
         }else{
             alerta.className = 'alert alert-danger mx-3';
             alerta.innerHTML = 'Ocurrio un error, verifique los datos ingresados.'; 
         }
+}
+
+function validarMail(input) {
+  //emilse@gmail.com
+  let expresion = /\w+@\w+\.[a-z]{2,4}$/;
+  if (input.value != "" && expresion.test(input.value)) {
+    input.className = "form-control is-valid";
+    return true;
+  } else {
+    input.className = "form-control is-invalid";
+    return false;
+  }
+}
+
+function enviarMail(){
+  // envioelmail.then(funcion si todo salio bien, funcion cuando algo salio)
+  emailjs.send("service_skyw81f","template_NQ91Q5cI",{
+    to_name: "Administrador",
+    from_name: document.getElementById('email').value,
+    message_html: `Nombre y Apellido: ${document.getElementById('nombre').value} -
+    Telefono: ${document.getElementById('telefono').value} -
+    Consulta: ${document.getElementById('consulta').value}`,
+    }).then(
+      function (response){
+        console.log(response);
+        // agregar el alerta que todo salio bien
+        alert('los datos se enviaron');
+      }, function (error){
+        console.log(error);
+        alert('fallo el envio');
+      }
+    )
 }

@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">Ingresar</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.html">Administración</a>
+                          </li>
                     </ul>
                 </div>
             </div>
@@ -47,15 +50,15 @@
     <main>
         <section class="container seccionOscura">
             <h4>Contactanos</h4>
-            <input class="login-input" type="text" name="nombreApellido" id="nombreApellido"
-                placeholder="Nombre y apellido">
-            <input class="login-input" type="email" name="email" id="email" placeholder="E-mail">
-            <input class="login-input" type="tel" name="numero de telefono" id="numeroTelefono"
-                placeholder="Numero de Telefono">
-            <input class="login-input" type="tel" name="numero de telefono" id="numeroTelefono"
-                placeholder="Numero de Telefono">
-            <textarea rows="5" placeholder="Ingrese su consulta" class="form-control my-3" required></textarea>
-            <Button type="button" class="btn">Enviar</Button>
+            <form>
+                <input onblur="veriTexto(this)" class="login-input" type="text" name="nombreApellido" id="nombreApellido"
+                    placeholder="Nombre y apellido">
+                <input onblur="validarMail(this)" class="login-input" type="email" name="email" id="email" placeholder="E-mail">
+                <input onblur="veriCod(this)" class="login-input" type="tel" name="numero de telefono" id="numeroTelefono"
+                    placeholder="Numero de Telefono">
+                <textarea onblur="veriTexto(this)" rows="5" placeholder="Ingrese su consulta" class="form-control my-3" required></textarea>
+                <Button type="button" class="btn">Enviar</Button>
+            </form>
         </section>
     </main>
     <footer class="bg-dark color-de-icono py-5">

@@ -1,5 +1,7 @@
 import { Pelicula } from "./pelisClass.js";
 
+
+// intento de destacar la estrella
 // window.destacar = function(estrella){
 
 //     if(document.getElementById("star").className = "far fa-star fa-2x text-warning"){
