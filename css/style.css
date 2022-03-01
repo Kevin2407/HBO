@@ -1,3 +1,11 @@
+body{
+    background-color: black;
+    color: whitesmoke;
+    padding-top: 59px;
+    margin: 0;
+}
+
+
 .pastel{
     background-color: rgb(236, 236, 236);
 }
@@ -28,12 +36,7 @@
     }
 }
 
-body{
-    background-color: black;
-    color: whitesmoke;
-    padding: 0;
-    margin: 0;
-}
+
 
 .bodyClaro{
     background-color: hsla(0, 0%, 43%, 0.467);
@@ -90,7 +93,7 @@ body{
 .seccionOscura button{
     width: 100%;
     margin: 10px 0;
-    background-color: cadetblue;
+    background-color: #5f9ea0;
     color: whitesmoke;
 }
 
@@ -256,4 +259,109 @@ body{
 .imgIndex{
     border: none;
 
+}
+
+textarea {
+    resize: none;
+}
+
+/* cortado y centrado de imagen destacada */
+.contenedor{
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.img-cortada-centrada {
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+    filter: brightness(35%);
+}
+
+
+.texto-centrado {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-48%, -16%);
+    width: 400px;
+}
+
+.texto-centrado h2 {
+    font-size: 30px;
+}
+.texto-centrado p {
+    font-size: 20px;
+}
+
+@media all and (max-width: 768px){
+    .img-cortada-centrada{
+        object-fit: cover;
+        width: 100%;
+        height: 300px;
+    }
+
+    .texto-centrado {
+        position: absolute;
+        top: 60%;
+        left: 22%;
+        transform: translate(-48%, -50%);
+    }
+    .texto-centrado h2 {
+        font-size: 20px;
+    }
+    .texto-centrado p {
+        font-size: 15px;
+    }
+    .botonesCabecera{
+        display: flex;
+        flex-direction: column;
+    }
+    .botonesCabecera button {
+        margin-top: 10px;
+        padding: 0 5px;
+    }
+}
+
+@media all and (max-width: 400px){
+    .img-cortada-centrada{
+        object-fit: cover;
+        width: 100%;
+        height: 200px;
+    }
+    .texto-centrado {
+        position: absolute;
+        top: 62%;
+        left: 26%;
+        transform: translate(-48%, -50%);
+    }
+    .texto-centrado h2 {
+        font-size: 15px;
+    }
+    .texto-centrado p {
+        font-size: 10px;
+    }
+    .botonesCabecera button {
+        font-size: 11px;
+    }
+}
+
+
+.btn-color-azul {
+    color:whitesmoke;
+    background-color:#5f9ea0b0;
+}
+.btn-color-azul:hover{
+    color:whitesmoke;
+    background-color:#5f9ea04d;
+}
+
+.btn-color-blanco {
+    color:rgb(0, 0, 0);
+    background-color:rgba(245, 245, 245, 0.753);
+}
+.btn-color-blanco:hover{
+    background-color:rgba(245, 245, 245, 0.267);
 }
