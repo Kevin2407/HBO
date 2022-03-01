@@ -61,6 +61,7 @@
           <button type="button" class="btn btn-color">Ver</button>
         </div>
       </div> -->
+
     </section>
 
     
@@ -68,46 +69,67 @@
       <h4 class="tituloCategorias text-center display-4">categorías</h4>
 
       <h5 class="tituloCategorias">Drama</h5>
-      <div class="row text-center" id="grillasDrama">
+      <div class="row text-center mb-5" id="grillasDrama">
 
       </div>
       <h5 class="tituloCategorias">Acción</h5>
-      <div class="row text-center" id="grillasAccion">
+      <div class="row text-center mb-5" id="grillasAccion">
 
       </div>
       <h5 class="tituloCategorias">Comedia</h5>
-      <div class="row text-center" id="grillasComedia">
+      <div class="row text-center mb-5" id="grillasComedia">
 
       </div>
       <h5 class="tituloCategorias">Infantiles</h5>
-      <div class="row text-center" id="grillasInfantiles">
+      <div class="row text-center mb-5" id="grillasInfantiles">
 
       </div>
     </section>
 
     <!-- Modal -->
 <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-transparent border-0 rounded-3">
       <section class="contenedorDetalleImg" id="seccionDetalle">
-        <img src="img/series/detalle/gotham.jpg" class="imagenDetalle" alt="">
+        <div class="contenedor">
+          <img src="img/series/detalle/gotham.jpg" class="imagenDetalle rounded-3" alt="">
+          <div class="texto-centrado">
+            <div>
+              <h3 class="display-1 tituloDetalle"><strong>Gotham</strong></h3>
+            </div>
+            <div class="botonesCabecera">
+              <a href="error404.html">
+                <button type="button" class="btn btn-color-azul"><i class="fa-solid fa-play"></i><strong>  Ver</button>
+              </a>
+            </div>
+        </div>
+        <div class="caja-sombra noTanOsc">
+        </div>`;
+        </div>
         <div class="contenedorDetalle2">
-            <h2>Gotham</h2>
-            <div class="row py-5">
+            <div class="row">
                 <article class="col-lg-8 col-md-12">
-                    <p>El detective James Gordon se desenvuelve por el mundo peligrosamente corrupto de Gotham City, mientras que un joven Bruce Wayne encuentra su camino para convertirse en un héroe.</p>
+                    <p class="descripcionDetalle lead">El detective James Gordon se desenvuelve por el mundo peligrosamente corrupto de Gotham City, mientras que un joven Bruce Wayne encuentra su camino para convertirse en un héroe.</p>
                 </article>
                 <article class="col-lg-4 col-md-12 contBoton">
-                    <a href="error404.html"><button type="button" class="btReproducir">Reproducir</button></a>
+                  <p class="datosDetalle lead"><span class="textoDatosDetalle">Nombre:</span> </p>
+                  <p class="datosDetalle lead"><span class="textoDatosDetalle">Categoria:</span> </p>
+                  <p class="datosDetalle lead"><span class="textoDatosDetalle">Año:</span> </p>
                 </article>
             </div>
-            <h3>Trailer</h3>
-            <iframe class="trailer" src="https://www.youtube.com/embed/VwOPA2upeCA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9">
+              <h3>Trailer</h3>
+              <iframe class="trailer embed-responsive-item contIframe" src="https://www.youtube.com/embed/VwOPA2upeCA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
     </section>
     </div>
   </div>
 </div>
+
+
+
+
   </main>
   <footer class="bg-dark color-de-icono py-5">
     <section class="container">

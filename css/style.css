@@ -46,7 +46,7 @@ body{
 }
 
 .tituloCategorias{
-    margin: 30px 0;
+    margin: 10px 0 5px 0;
 }
 
 .imgSeries{
@@ -123,16 +123,18 @@ body{
 /* pagina detalle */
 
 .contenedorDetalleImg{
-    background-color: #343a40;
+    background-color: #181818;
+    border:  #181818;
     border-radius: 4px;
 }
 
 .imagenDetalle{
+    object-fit: cover;
     width: 100%;
 }
 
 .contenedorDetalle2{
-    padding: 40px;
+    padding: 5px 40px 40px 40px;
     font-family: Arial, Helvetica, sans-serif;
 }
 .contenedorDetalle2 h2{
@@ -140,27 +142,40 @@ body{
     text-align: center;
 }
 
-.contenedorDetalle2 p{
-    font-size: 25px;
+.descripcionDetalle{
+    font-size: 1.1em;
 }
 
-.contBoton{
-    text-align: center;
+
+
+.datosDetalle {
+    font-size: 0.9em;
 }
-.btReproducir{
-    padding: 30px 90px;
-    font-size: 30px;
-    margin: 10px auto;
-    border-radius: 20px;
-    background-color: cadetblue;
-    color: whitesmoke;
-    border: black;
+
+.textoDatosDetalle{
+    color: #777;
 }
+
 
 .trailer{
     width: 100%;
     height: 200px;
     margin: 10px 0px;
+}
+
+@media all and (max-width: 992px){
+    .tituloDetalle {
+        font-size: 3em;
+    }
+
+}
+@media all and (max-width:360px){
+    .tituloDetalle {
+        font-size: 1.5em;
+    }
+    .descripcionDetalle{
+        font-size: 0.5em;
+    }
 }
 
 @media all and (max-width:500px){
@@ -189,23 +204,11 @@ body{
 }
 
 @media all and (max-width: 1000px){
-    .contenedorDetalle2 p{
+    .descripcionDetalle{
         font-size: 18px;
     }
-}
-
-@media all and (max-width: 1300px){
-    .btReproducir{
-    padding: 10px 30px;
-    font-size: 20px;
-
-    }
-}
-@media all and (max-width: 260px){
-    .btReproducir{
-    padding: 5px 15px;
-    font-size: 10px;
-
+    .datosDetalle {
+        font-size: 0.9em;
     }
 }
 
@@ -280,13 +283,35 @@ textarea {
     filter: brightness(35%);
 }
 
+.caja-sombra {
+    display: block;
+    background-image: linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#000000 68%,#000000 100%);
+    background-size: 100% 100%;
+    background-position: 0 top;
+    background-repeat: repeat-x;
+    background-color: transparent;
+    width: 100%;
+    height: 14.7vw;
+    top: auto;
+    bottom: -1px;
+    opacity: 1;
+    z-index: 8;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.noTanOsc {
+    background-image: linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 0%,rgba(20,20,20,.35) 25%,rgba(20,20,20,.58) 46%,#181818 68%,#181818 100%);
+}
 
 .texto-centrado {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 20%;
     transform: translate(-48%, -16%);
     width: 400px;
+    z-index: 20;
 }
 
 .texto-centrado h2 {
@@ -294,6 +319,18 @@ textarea {
 }
 .texto-centrado p {
     font-size: 20px;
+}
+
+.botonesCabecera{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.botonesCabecera button {
+    margin-right: 10px;
 }
 
 @media all and (max-width: 768px){
@@ -318,10 +355,12 @@ textarea {
     .botonesCabecera{
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .botonesCabecera button {
         margin-top: 10px;
-        padding: 0 5px;
+        
     }
 }
 
@@ -351,7 +390,7 @@ textarea {
 
 .btn-color-azul {
     color:whitesmoke;
-    background-color:#5f9ea0b0;
+    background-color:#5f9ea0bb;
 }
 .btn-color-azul:hover{
     color:whitesmoke;
@@ -360,8 +399,16 @@ textarea {
 
 .btn-color-blanco {
     color:rgb(0, 0, 0);
-    background-color:rgba(245, 245, 245, 0.753);
+    background-color:rgba(245, 245, 245, 0.938);
 }
 .btn-color-blanco:hover{
-    background-color:rgba(245, 245, 245, 0.267);
+    color:rgb(0, 0, 0);
+    background-color:rgba(245, 245, 245, 0.425);
+}
+
+
+@media all and (min-width: 550px){
+    .contIframe {
+        height: 450px;
+    }
 }

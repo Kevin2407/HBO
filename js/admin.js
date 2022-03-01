@@ -302,13 +302,18 @@ function actualizarDatosPelis() {
   
     for(let i in _listaPelis){  // recorre uno por uno los elementos de pelicula de array para ver que el seleccionado sea el unico destacado
       btnEstrella = document.getElementById(`destacar${_listaPelis[i].codigo}`);
-      if(_listaPelis[i].destacado){  // si esta destacado, quita la clase que rellena la estrella y pone la variable destacado en false
+      if(btnEstrella.id === estrella.id){ // si el codigo del boton presionado coincide con el id de la pelicula, significa que esta es la pelicula que queremos destacar, y procede a rellenar la estrella y poner su variable en true
+        if(_listaPelis[i].destacado){
+          btnEstrella.className = "far fa-star fa-2x text-warning border-0 bg-transparent";
+          _listaPelis[i].destacado = false;
+        }else{
+          btnEstrella.className = "fas fa-star fa-2x text-warning border-0 bg-transparent";
+          _listaPelis[i].destacado = true;
+        }
+      }
+      if(_listaPelis[i].destacado && btnEstrella.id != estrella.id){  // si esta destacado, quita la clase que rellena la estrella y pone la variable destacado en false
         btnEstrella.className = "far fa-star fa-2x text-warning border-0 bg-transparent";
         _listaPelis[i].destacado = false;
-      }
-      if(`destacar${_listaPelis[i].codigo}` === estrella.id){ // si el codigo del boton presionado coincide con el id de la pelicula, significa que esta es la pelicula que queremos destacar, y procede a rellenar la estrella y poner su variable en true
-        btnEstrella.className = "fas fa-star fa-2x text-warning border-0 bg-transparent";
-        _listaPelis[i].destacado = true;
       }
     }
     localStorage.setItem('listaPelisKey',JSON.stringify(_listaPelis)); // manda el nuevo array con el nuevo destacado al LS
