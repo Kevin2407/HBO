@@ -1,4 +1,7 @@
-// variables de las categorias
+// logica pagina principal
+
+
+// VARIABLES DE LAS CATEGORIAS
 
 let categoriaDrama = [];
 let drama = document.getElementById('grillasDrama');
@@ -9,89 +12,94 @@ let comedia = document.getElementById('grillasComedia');
 let categoriaInfantiles = [];
 let infantil = document.getElementById('grillasInfantiles');
 
-// logica pagina principal
 
 let listaPelicula = [];
 let peliculaDestacada = [];
 
-
+// DECLARACIONES DE FUNCIONES
 leerPelicula();
 
-function leerPelicula(){
-    // esta funcion trae los datos del LS 
-    if(localStorage.length > 0){
+
+// FUNCIONES
+function leerPelicula(){  // esta funcion trae los datos del LS 
+    let destacada;
+    if(localStorage.length > 0){  // si hay una lista en el LS
         listaPelicula = JSON.parse(localStorage.getItem('listaPelisKey'));
         peliculaDestacada = JSON.parse(localStorage.getItem('peliculaDestacadaKey'));
 
         for(let i in listaPelicula){
-            if(listaPelicula[i].categoria === 'Drama'){
-                categoriaDrama.push(listaPelicula[i]);
+            switch(listaPelicula[i].categoria){
+                case 'Drama':
+                    categoriaDrama.push(listaPelicula[i]);
+                break;
+                case 'Accion':
+                    categoriaAccion.push(listaPelicula[i]);
+                break;
+                case 'Comedia':
+                    categoriaComedia.push(listaPelicula[i]);
+                break;
+                case 'Infantil':
+                    categoriaInfantiles.push(listaPelicula[i]);
+                break;
             }
+            if(listaPelicula[i].destacada)
+            destacada = listaPelicula[i];
         }
-
-        for(let i in listaPelicula){
-            if(listaPelicula[i].categoria === 'Accion'){
-                categoriaAccion.push(listaPelicula[i]);
-            }
-        }
-
-        for(let i in listaPelicula){
-            if(listaPelicula[i].categoria === 'Comedia'){
-                categoriaComedia.push(listaPelicula[i]);
-            }
-        }
-
-        for(let i in listaPelicula){
-            if(listaPelicula[i].categoria === 'Infantil'){
-                categoriaInfantiles.push(listaPelicula[i]);
-            }
-        }
-
-
         dibujarPeli();
+        dibujarDestacados();
     }
 }
 
-function dibujarPeli(){
+function dibujarPeli(){ //imprime el codigo de las cards de peliculas en las grillas del index, segun su categoria correspondiente
+    // vaciar cards del inicio
     drama.innerHTML = "";
     accion.innerHTML = "";
     comedia.innerHTML = "";
     infantil.innerHTML = "";
 
+        // Escribe el codigo HTML de la card en la grilla de drama
     for(let i in categoriaDrama){
-        let dramaHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4" >
-        <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button>
-      </article>`;
-      drama.innerHTML += dramaHTML;
+        if(categoriaDrama[i].publicado){
+            let dramaHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4" >
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button></article>`;
+            drama.innerHTML += dramaHTML;
+        }
     }
 
+        // Escribe el codigo HTML de la card en la grilla de accion
     for(let i in categoriaAccion){
-        let accionHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4">
-        <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaAccion[i].codigo}"><img src="img/series/drama/${categoriaAccion[i].imagen}" alt="Pelicula/serie ${categoriaAccion[i].nombre}" class="imgSeries"></button>
-      </article>`;
-      accion.innerHTML += accionHTML;
+        if(categoriaAccion[i].publicado){
+            let accionHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4">
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaAccion[i].codigo}"><img src="img/series/drama/${categoriaAccion[i].imagen}" alt="Pelicula/serie ${categoriaAccion[i].nombre}" class="imgSeries"></button>
+            </article>`;
+            accion.innerHTML += accionHTML;
+        }
     }
 
+        // Escribe el codigo HTML de la card en la grilla de comedia
     for(let i in categoriaComedia){
-        let comediaHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4">
-        <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaComedia[i].codigo}"><img src="img/series/drama/${categoriaComedia[i].imagen}" alt="Pelicula/serie ${categoriaComedia[i].nombre}" class="imgSeries"></button>
-      </article>`;
-      comedia.innerHTML += comediaHTML;
+        if(categoriaComedia[i].publicado){
+            let comediaHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4">
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaComedia[i].codigo}"><img src="img/series/drama/${categoriaComedia[i].imagen}" alt="Pelicula/serie ${categoriaComedia[i].nombre}" class="imgSeries"></button>
+            </article>`;
+            comedia.innerHTML += comediaHTML;
+        }
     }
 
+        // Escribe el codigo HTML de la card en la grilla de infantiles
     for(let i in categoriaInfantiles){
-        let infantilHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4">
-        <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaInfantiles[i].codigo}"><img src="img/series/drama/${categoriaInfantiles[i].imagen}" alt="Pelicula/serie ${categoriaInfantiles[i].nombre}" class="imgSeries"></button>
-      </article>`;
-      infantil.innerHTML += infantilHTML;
+        if(categoriaInfantiles[i].publicado){
+            let infantilHTML = `<article class="col-sm-6 col-md-4 col-lg-3 my-4">
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaInfantiles[i].codigo}"><img src="img/series/drama/${categoriaInfantiles[i].imagen}" alt="Pelicula/serie ${categoriaInfantiles[i].nombre}" class="imgSeries"></button>
+            </article>`;
+            infantil.innerHTML += infantilHTML;
+        }
     }
-
 }
 
 
-// funcion para escribir los datos del objeto pelicula en el modal, aunque sin exito :(
 
-function dibujarModal(){
+function dibujarModal(){    // funcion para escribir los datos del objeto pelicula en el modal, aunque sin exito :(
     let modalDetalle = document.getElementById('seccionDetalle');
     modalDetalle.innerHTML = "";
     for (let i in listaPelicula){
@@ -113,4 +121,25 @@ function dibujarModal(){
         modalDetalle.innerHTML = detalleHTML;
     }
 
+}
+
+function dibujarDestacados(){
+    let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));  // trae el array de peliculas de LS a la variable _listaPelis
+    let destacado = _listaPelis.find((encontrada)=>{
+        return encontrada.destacado;
+    });
+
+    let sectionDestacado = `    
+    <img class="img-cortada-centrada" src="img/series/drama/${destacado.imagen}" alt="${destacado.nombre}">
+    <div class="texto-centrado">
+        <div>
+            <h2>${destacado.nombre}</h2>
+            <p class="lead">${destacado.descripcion}</p>
+        </div>
+        <div class="botonesCabecera">
+            <button type="button" class="btn btn-color-azul"><i class="fa-solid fa-play"></i><strong>  Ver</button>
+            <button type="button" class="btn btn-color-blanco"><i class="fa-solid fa-circle-info"></i><strong>  Más Información</button>
+        </div>
+    </div>`;
+    document.getElementById('seccionDestacado').innerHTML = sectionDestacado;
 }

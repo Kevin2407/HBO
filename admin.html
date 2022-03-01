@@ -17,16 +17,16 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><img src="img/HBOgo-logo.png" alt="logo de HBO"
                         class="logo"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarBtnHamburguesa" aria-controls="navbarBtnHamburguesa" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarBtnHamburguesa">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="index.html">Inicio</a>
@@ -42,7 +42,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="admin.html">Administración</a>
-                          </li>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                     </tr>
                 </thead>
                 <tbody id="tBodyPelis">
-                   
+                    
                 </tbody>
             </table>
         </section>
@@ -91,23 +91,23 @@
                     <form onsubmit="guardarPeli(event)" id="formPeliculas">
                         <div class="mb-3">
                             <label class="form-label" id="labelCodigo">Código <span class="text-danger">*</span></label>
-                            <input type="num" id="codigo" class="form-control" onblur="veriCod(this)">
+                            <input type="num" id="codigo" class="form-control" onkeyup="validar(this,2)">
                             <div class="valid-feedback">
                             </div>
-                            <div class="invalid-feedback">
+                            <div id="divInvalidCodigo" class="invalid-feedback">
                                 <p>Ingrese un número valido</p>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nombre <span class="text-danger">*</span></label>
-                            <input type="text" id="nombrePeli" class="form-control" onblur="veriTexto(this)">
+                            <input type="text" id="nombrePeli" class="form-control" onblur="validar(this,1)">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Categoria</label>
-                            <select class="form-select" name="" id="categoria">
+                            <select class="form-select" name="categoria" id="categoria">
                                 <option value="">Elija una categoria</option>
                                 <option value="Drama">Drama</option>
-                                <option value="Acción">Acción</option>
+                                <option value="Accion">Acción</option>
                                 <option value="Comedia">Comedia</option>
                                 <option value="Infantil">Infantil</option>
                             </select>
@@ -115,11 +115,11 @@
                         <div class="mb-3">
                             <label class="form-label">Descripción <span class="text-danger">*</span></label>
                             <textarea type="text" id="descripcion" class="form-control"
-                                onblur="veriTexto(this)"></textarea>
+                                onkeyup="limiteLetras(this)"></textarea>
                             <div class="valid-feedback">
                             </div>
-                            <div class="invalid-feedback">
-                                <p></p>
+                            <div id="divInvalidDescripcion" class="invalid-feedback">
+                            <p></p>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -133,20 +133,39 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Imagen <span class="text-danger">*</span></label>
-                            <input type="text" id="img" class="form-control" onblur="validImg(this)">
+                            <select class="form-select" name="imagen" id="img">
+                                <option value="sinFoto.png">Elija una imagen</option>
+                                <option value="blackList.png">blackList.png</option>
+                                <option value="cronicasdeFrankestein.png">cronicasdeFrankestein.png</option>
+                                <option value="gotham.png">gotham.png</option>
+                                <option value="hinterland.png">hinterland.png</option>
+                                <option value="marginal.png">marginal.png</option>
+                                <option value="reckoning.png">reckoning.png</option>
+                                <option value="trapped.png">trapped.png</option>
+                                <option value="vikings.png">vikings.png</option>
+                                <option value="backyardigans.webp">backyardigans.webp</option>
+                                <option value="bobEsponja.webp">bobEsponja.webp</option>
+                                <option value="forestGump.webp">forestGump.webp</option>
+                                <option value="grizzy.webp">grizzy.webp</option>
+                                <option value="miObraMaestra.webp">miObraMaestra.webp</option>
+                                <option value="pasanteDeModa.webp">pasanteDeModa.webp</option>
+                                <option value="sonic.webp">sonic.webp</option>
+                                <option value="tocToc.webp">tocToc.webp</option>
+                            </select>
+                            <!-- <input type="text" id="img" class="form-control" onblur="validar(this,4)">
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">
                                 <p>Tiene que agregar un formato de imagen (.jpg</p>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="mb-3">
                             <label class="form-label" id="labelCodigo">Video <span class="text-danger">*</span></label>
-                            <input type="text" id="video" class="form-control" onblur="veriTexto(this)">
+                            <input type="text" id="video" class="form-control" onblur="validar(this,1)">
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">
-                                <p>Ingrese un HTML valido</p>
+                                <p>Ingrese un URL valido</p>
                             </div>
                         </div>
                         <div class="alert alert-success mx-3 d-none" role="alert" id='msjEnvio'></div>
@@ -197,5 +216,4 @@
     <script src="js/validaciones.js"></script>
     <script type="module" src="js/admin.js"></script>
 </body>
-
 </html>
