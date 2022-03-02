@@ -20,6 +20,11 @@ let peliculaDestacada = [];
 leerPelicula();
 
 
+let modal = document.getElementById('modalDetalle');  //evento llamado solo para detener el video del modal en casi que se cierre el modal mientras este se reproduce, para que no se escuche el ruido del video mientras se continua en la pagina
+modal.addEventListener('hidden.bs.modal',()=>modal.innerHTML = "");
+
+
+
 // FUNCIONES
 function leerPelicula(){  // esta funcion trae los datos del LS 
     let destacada;
@@ -98,66 +103,81 @@ function dibujarPeli(){ //imprime el codigo de las cards de peliculas en las gri
 }
 
 
+const modalPelicula = new bootstrap.Modal(document.getElementById("modalDetalle"));
 
-function dibujarModal(input){    // funcion para escribir los datos del objeto pelicula en el modal, aunque sin exito :(
+window.dibujarModal = function(id){    // funcion para escribir los datos del objeto pelicula en el modal
     
-    const modalPelicula = new bootstrap.Modal(document.getElementById("modalDetalle"));
+    let detalle = document.getElementById('modalDetalle');
+    let trailerHTML = "";
     let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));
+    let peliAbierta = _listaPelis.find(encontrada => encontrada.codigo === id);
+    let cBarra = 0;
+    let vidURLcort = "https://www.youtube.com/embed/";
 
-    let peliAbierta = _listaPelis.find(encontrada => encontrada.codigo === input.id);
+    for(let i in peliAbierta.video){
+        if(peliAbierta.video[i] === "/"){
+            cBarra++;
+        }
+        if(cBarra >= 3){
+            vidURLcort += peliAbierta.video[i];
+        }
+    }
+
+
+    if((/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/).test(peliAbierta.video)){ // si el video introducido es un enlace de youtube, entonces permite que aparezca en el modal
+        trailerHTML = `
+        <h3>Trailer</h3>
+        <iframe class="trailer embed-responsive-item contIframe" src="${vidURLcort}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    }
 
 
 
 
-    // modalPelicula.show();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // let modalDetalle = document.getElementById('seccionDetalle');
-    // modalDetalle.innerHTML = "";
-    // for (let i in listaPelicula){
-    //     let detalleHTML = `<img src="img/series/detalle/${listaPelicula[i].imagen}" class="imagenDetalle" alt="portada ---">
-    //     <div class="contenedorDetalle2">
-    //         <h2>${listaPelicula[i].nombre}</h2>
-    //         <div class="row py-5">
-    //             <article class="col-lg-8 col-md-12">
-    //                 <p>${listaPelicula[i].descripcion}</p>
-    //             </article>
-    //             <article class="col-lg-4 col-md-12 contBoton">
-    //                 <a href="error404.html"><button type="button" class="btReproducir">Reproducir</button></a>
-    //             </article>
-    //         </div>
-    //         <h3>Trailer</h3>
-    //         ${listaPelicula[i].video}
-    //     </div>`
+    let HTMLDetallePeliculas = `
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-transparent border-0 rounded-3">
+        <section class="contenedorDetalleImg" id="seccionDetalle">
+          <div class="contenedor">
+            <img src="img/series/drama/${peliAbierta.imagen}" class="imagenDetalle rounded-3" alt="${peliAbierta.nombre}">
+            <div class="texto-centrado">
+              <div class="botonesCabecera">
+                <a href="error404.html">
+                  <button type="button" class="btn btn-color-blanco"><i class="fa-solid fa-play"></i><strong>  Ver</button>
+                </a>
+              </div>
+          </div>
+          <div class="caja-sombra noTanOsc">
+          </div>
+          </div>
+          <div class="contenedorDetalle2">
+              <div class="row">
+                  <article class="col-lg-8 col-md-12">
+                      <p class="descripcionDetalle lead">${peliAbierta.descripcion}</p>
+                  </article>
+                  <article class="col-lg-4 col-md-12 contBoton">
+                    <p class="datosDetalle lead"><span class="textoDatosDetalle">Nombre:</span> ${peliAbierta.nombre}</p>
+                    <p class="datosDetalle lead"><span class="textoDatosDetalle">Categoria:</span> ${peliAbierta.categoria}</p>
+                    <p class="datosDetalle lead"><span class="textoDatosDetalle">Año:</span> 2022</p>
+                  </article>
+              </div>
+            ${trailerHTML}
+          </div>
+      </section>
+      </div>
+    </div>`;
 
-    //     modalDetalle.innerHTML = detalleHTML;
-    // }
 
+
+    detalle.innerHTML = HTMLDetallePeliculas;
+
+
+    modalPelicula.show();
 }
 
 function dibujarDestacados(){
     let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));  // trae el array de peliculas de LS a la variable _listaPelis
-    let destacado = _listaPelis.find((encontrada)=>{
-        return encontrada.destacado;
-    });
+    let destacado = _listaPelis.find((encontrada) => encontrada.destacado);
+    console.log(destacado);
 
     let sectionDestacado = `    
     <img class="img-cortada-centrada" src="img/series/drama/${destacado.imagen}" alt="${destacado.nombre}">
@@ -167,8 +187,10 @@ function dibujarDestacados(){
             <p class="lead">${destacado.descripcion}</p>
         </div>
         <div class="botonesCabecera">
+            <a href="error404.html">
             <button type="button" class="btn btn-color-azul"><i class="fa-solid fa-play"></i><strong>  Ver</button>
-            <button type="button" class="btn btn-color-blanco" onclick="dibujarModal(this)"><i class="fa-solid fa-circle-info"></i><strong>  Más Información</button>
+            </a>
+            <button type="button" class="btn btn-color-blanco" onclick="dibujarModal(this.id)" id="${destacado.codigo}" data-bs-toggle="modal" data-bs-target="#modalDetalle"><i class="fa-solid fa-circle-info"></i><strong>  Más Información</button>
         </div>
     </div>
     <div class="caja-sombra">

@@ -15,7 +15,7 @@ leerDatos();
 
 // EVENTLISTENERS
 
-btnModalOpen.addEventListener("click", () => { // llamada al modal al precionar boton de agregar pelicula
+btnModalOpen.addEventListener("click", () => { // llamada al modal al presionar boton de agregar pelicula
   limpiarFormulario();
   document.getElementById("tituloModal").innerHTML = "Agregar Pelicula/Serie";
   document.getElementById("labelCodigo").innerHTML = 'Código <span class="text-danger">*</span>';
