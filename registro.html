@@ -10,11 +10,12 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
   <meta name="keyword" content="HBO, peliculas, series, ver, entretenimiento, estrenos" />
   <title>HBO</title>
 </head>
 
-<body class="bodyClaro">
+<body class="">
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -48,20 +49,76 @@
     </nav>
   </header>
   <main>
-    <section class="container seccionOscura">
-        <h4>Registro</h4>
-        <form action="">
-          <input class="login-input" type="text" name="nombreApellido" id="nombreApellido" placeholder="Nombre y apellido">
-          <input class="login-input" type="text" name="nombre de Usuario" id="nombreUsuario" placeholder="Nombre de usuario">
-          <input class="login-input" type="email" name="email" id="email" placeholder="E-mail">
-          <input class="login-input" type="tel" name="numero de telefono" id="numeroTelefono" placeholder="Numero de Telefono">
-          <input class="login-input" type="password" name="contraseña" id="contraseniaR" placeholder="Contraseña">
-          <div class="form-check my-2">
-            <input class="form-check-input mt-3" type="checkbox" name="derechos" id="derechos">
-            <label class="form-check-label text-light"></p>Acepto los <a href="error404.html">terminos y condiciones</a></label>
+    <section class="container seccionClara">
+        <h4><strong>Registro</strong></h4>
+        <hr>
+        <form onsubmit="crearUsuario(event)" id="formRegistro">
+          <div class="mb-3">
+            <label class="form-label">Nombre y Apellido <span class="text-danger">*</span></label>
+            <input class="login-input" onblur="validar(this,1)" type="text" name="nombreApellido" id="nombreApellido" placeholder="Nombre y apellido">
+          <div class="valid-feedback">
           </div>
-          
-          <Button type="button" class="btn">Registrarse</Button>
+          <div  class="invalid-feedback">
+              <p>Ingrese su nombre y apellido</p>
+          </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nombre de usuario <span class="text-danger">*</span></label>
+            <input class="login-input" onkeyup="validarNomUsuario(this)" type="text" name="nombre de Usuario" id="nombreUsuario" placeholder="Nombre de usuario">
+            <div class="valid-feedback">
+            </div>
+            <div  class="invalid-feedback">
+                <p>Ingrese un nombre de usuario</p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">E-mail <span class="text-danger">*</span></label>
+            <input class="login-input" onblur="validar(this,3)" type="email" name="email" id="email" placeholder="E-mail">
+            <div class="valid-feedback">
+            </div>
+            <div  class="invalid-feedback">
+                <p>Ingrese un e-mail valido</p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Teléfono <span class="text-danger">*</span></label>
+            <input class="login-input" onblur="validar(this,2)" type="tel" name="numero de telefono" id="numeroTelefono" placeholder="Numero de Telefono">
+            <div class="valid-feedback">
+            </div>
+            <div  class="invalid-feedback">
+                <p>Ingrese un número valido</p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña <span class="text-danger">*</span></label>
+            <input class="login-input" type="password" name="contraseña" id="contraseniaR" placeholder="Contraseña">
+            <div class="valid-feedback">
+            </div>
+            <div  class="invalid-feedback">
+                <p>Ingrese un número valido</p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Introduzca nuevamente la contraseña <span class="text-danger">*</span></label>
+            <input class="login-input" type="password" name="contraseña" id="contraseniaRrep" placeholder="Contraseña">
+            <div class="valid-feedback">
+            </div>
+            <div  class="invalid-feedback">
+                <p>Las contraseñas no coinciden</p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="form-check my-2">
+              <input class="form-check-input mt-3" type="checkbox" name="derechos" id="derechos">
+              <label class="form-check-label"></p>Acepto los <a href="error404.html">Terminos y condiciones</a></label>
+            </div>
+            <div class="valid-feedback">
+            </div>
+            <div  class="invalid-feedback">
+                <p></p>
+            </div>
+          </div>
+          <Button class="btn">Registrarse</Button>
         </form>
     </section>
   </main>
@@ -102,7 +159,9 @@
     </section>
   </footer>
   <script src="js/bootstrap/bootstrap.min.js"></script>
+  <script src="js/validaciones.js"></script>
   <script src="js/app.js"></script>
+  <script type="module" src="js/registro.js"></script>
 </body>
 
 </html>

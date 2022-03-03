@@ -23,14 +23,17 @@ function validar(input,opcion){  // esta funcion recibe por primer parametro al 
     case 1:  // valida solo que el campo no este vacio
       _b = cumpleCondicion(input,true);
     break;
-    case 2:  // Valida que el campo no este vacio y que todo sea un codigo unico
-      _b = (cumpleCondicion(input,!isNaN(codigo.value)) && validarCodigo(input.value));
-      break;
-      case 3:  // Valida que el campo no este vacio y que se ingrese un email
-      _b = cumpleCondicion(input,(/\w+@\w+\.[a-z]{2,4}$/).test(input.value));
-      break;
-      case 4:  // Valida que el campo no este vacio y tenga una extension de imagen
-      _b = cumpleCondicion(input,(/\.(jpg|png|gif|webp)$/i).test(img.value));
+    case 2:  // Valida que el campo no este vacio y que todo sea numeros
+    _b = cumpleCondicion(input,!isNaN(input.value));
+    break;
+    case 3:  // Valida que el campo no este vacio y que se ingrese un email
+    _b = cumpleCondicion(input,(/\w+@\w+\.[a-z]{2,4}$/).test(input.value));
+    break;
+    case 4:  // Valida que el campo no este vacio y tenga una extension de imagen
+    _b = cumpleCondicion(input,(/\.(jpg|png|gif|webp)$/i).test(img.value));
+    break;
+    case 5:  // Valida que el campo no este vacio y que todo sea numeros y el codigo no se repita
+    _b = (cumpleCondicion(input,!isNaN(input.value)) && validarCodigo(input.value));
       break;
     }
   return _b; // la funcion regresa el valor segun se cumpla la condicion especificada en el numero del segundo parametro
@@ -131,4 +134,24 @@ function limiteLetras(input){  // esta funcion revisa que la descripcion tenga e
   console.log(_b && _c)
 
   return (_b && _c);
+}
+
+
+// registro
+
+
+
+
+
+function validarNomUsuario(input){
+
+}
+
+function compararContras(contra1,contra2){
+  if(contra1 == contra2){
+    return true;
+  }else{
+    document.getElementById('contraseniaRrep').className = "form-control is-invalid";
+    return false;
+  }
 }

@@ -12,3 +12,15 @@ export class Pelicula{
 }
 
 
+export class Usuario{
+    constructor(nombre,nomUsuario,email,telefono,contrasenia,enSesion,aprobado,admin){
+        this.nombre = nombre;
+        this.nomUsuario = nomUsuario;
+        this.email = email;
+        this.telefono = telefono;
+        this.contrasenia = contrasenia;
+        this.enSesion = enSesion;
+        this.aprobado = aprobado;
+        this.admin = admin;
+    }
+}
