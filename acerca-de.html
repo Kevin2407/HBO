@@ -16,15 +16,16 @@
 
 <body class="texto-claro">
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-transparente fixed-top" id="navbarIndex">
       <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="img/HBOgo-logo.png" alt="logo de HBO" class="logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarBtnHamburguesa" aria-controls="navbarBtnHamburguesa" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarBtnHamburguesa">
+          <a class="navbar-brand" href="index.html"><img src="img/HBOgo-logo.png" alt="logo de HBO"
+                  class="logo"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarBtnHamburguesa" aria-controls="navbarBtnHamburguesa" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarBtnHamburguesa">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link" href="index.html">Inicio</a>
@@ -32,14 +33,14 @@
             <li class="nav-item">
               <a class="nav-link" href="contacto.html">Contacto</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link active" href="acerca-de.html">Acerca de nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login.html">Ingresar</a>
+              <a class="nav-link" href="admin.html">Administración</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin.html">Administración</a>
+              <a class="nav-link" href="">Cerrar Sesión</a>
             </li>
           </ul>
         </div>
@@ -72,29 +73,28 @@
     </div>
     </section>
   </main>
-  <footer class="bg-dark color-de-icono py-5">
+  <footer class="bg-transparent color-de-icono py-5">
     <section class="container">
-      <article class="row text-secondary mt-3">
+    <article class="row text-secondary mt-3 text-center">
         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
-          <a class="navbar-brand" href="index.html"><img src="img/HBO-logo.png" alt="logo de HBO"
-              class="logoFooter"></a>
+        <a class="navbar-brand" href="index.html"><img src="img/HBO-logo.png" alt="logo de HBO"
+            class="logoFooter"></a>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
           <ul class="lista">
             <li>
-              <a href="index.html" class="text-secondary">Inicio</a>
+              <a href="index.html" class="text-secondary text-decoration-none">Inicio</a>
             </li>
             <li>
-              <a href="contacto.html" class="text-secondary">Contacto</a>
+              <a href="contacto.html" class="text-secondary text-decoration-none">Contacto</a>
             </li>
             <li>
-              <a href="acerca-de.html" class="text-secondary">Acerca de</a>
+              <a href="acerca-de.html" class="text-secondary text-decoration-none">Acerca de</a>
             </li>
-            <li><a href="login.html" class="text-secondary">Login</a></li>
           </ul>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
-          <h6>Nuestras redes sociales</h4>
+        <h6>Nuestras redes sociales</h4>
             <a href="https://www.facebook.com/HBOLatAm" target="blank" class="me-2 color-de-icono"><i
                 class="fab fa-facebook-square fa-3x"></i></a>
             <a href="https://twitter.com/HBOLAT" target="blank" class="me-2 color-de-icono"><i
@@ -103,11 +103,11 @@
                 class="fab fa-instagram-square fa-3x"></i></a>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
-          <p>Todos los derechos reservados &copy;</p>
+        <p>&copy; Todos los derechos reservados</p>
         </div>
-      </article>
+    </article>
     </section>
-  </footer>
+</footer>
   <script src="js/bootstrap/bootstrap.min.js"></script>
   <script src="js/app.js"></script>
 </body>

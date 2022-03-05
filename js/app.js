@@ -19,6 +19,32 @@ let peliculaDestacada = [];
 // DECLARACIONES DE FUNCIONES
 leerPelicula();
 
+window.onscroll = () => {
+
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("navbarIndex").className = "navbar navbar-expand-lg navbar-dark navbar-scroll-abajo fixed-top";
+    } else {
+        document.getElementById("navbarIndex").className = "navbar navbar-expand-lg navbar-dark navbar-transparente fixed-top";
+    }
+};
+
+function cargarLogin(){
+    let _listaUsuarios = JSON.parse(localStorage.getItem("listaUsuariosLS"));
+    let c = 0;
+
+    for(let i in _listaUsuarios){
+        if(!_listaUsuarios[i].enSesion){
+            location.href ='login.html';
+        }else{
+            c++;
+        }
+
+        if( c > 1 ){
+            _listaUsuarios[i].enSesion = false;
+        }
+    }
+};
+
 
 let modal = document.getElementById('modalDetalle');  //evento llamado solo para detener el video del modal en casi que se cierre el modal mientras este se reproduce, para que no se escuche el ruido del video mientras se continua en la pagina
 modal.addEventListener('hidden.bs.modal',()=>modal.innerHTML = "");
@@ -177,7 +203,6 @@ window.dibujarModal = function(id){    // funcion para escribir los datos del ob
 function dibujarDestacados(){
     let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));  // trae el array de peliculas de LS a la variable _listaPelis
     let destacado = _listaPelis.find((encontrada) => encontrada.destacado);
-    console.log(destacado);
 
     let sectionDestacado = `    
     <img class="img-cortada-centrada" src="img/series/drama/${destacado.imagen}" alt="${destacado.nombre}">

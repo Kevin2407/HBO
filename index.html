@@ -9,14 +9,14 @@
   <meta name="description" content="Pagina de HBO">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
-  <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
   <meta name="keyword" content="HBO, peliculas, series, ver, entretenimiento, estrenos" />
+  <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
   <title>HBO</title>
 </head>
 
-<body class="texto-claro">
+<body class="texto-claro p-0" id="bodyIndex" onload="cargarLogin()">
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-transparente fixed-top" id="navbarIndex">
       <div class="container">
           <a class="navbar-brand" href="index.html"><img src="img/HBOgo-logo.png" alt="logo de HBO"
                   class="logo"></a>
@@ -37,10 +37,10 @@
               <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login.html">Ingresar</a>
+              <a class="nav-link" href="admin.html">Administración</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin.html">Administración</a>
+              <a class="nav-link" href="">Cerrar Sesión</a>
             </li>
           </ul>
         </div>
@@ -128,9 +128,9 @@
 
 
   </main>
-  <footer class="bg-dark color-de-icono py-5">
+  <footer class="bg-transparent color-de-icono py-5">
     <section class="container">
-      <article class="row text-secondary mt-3">
+      <article class="row text-secondary mt-3 text-center">
         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
           <a class="navbar-brand" href="index.html"><img src="img/HBO-logo.png" alt="logo de HBO"
               class="logoFooter"></a>
@@ -138,15 +138,14 @@
         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
           <ul class="lista">
             <li>
-              <a href="index.html" class="text-secondary">Inicio</a>
+              <a href="index.html" class="text-secondary text-decoration-none">Inicio</a>
             </li>
             <li>
-              <a href="contacto.html" class="text-secondary">Contacto</a>
+              <a href="contacto.html" class="text-secondary text-decoration-none">Contacto</a>
             </li>
             <li>
-              <a href="acerca-de.html" class="text-secondary">Acerca de</a>
+              <a href="acerca-de.html" class="text-secondary text-decoration-none">Acerca de</a>
             </li>
-            <li><a href="login.html" class="text-secondary">Login</a></li>
           </ul>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">

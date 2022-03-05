@@ -155,3 +155,9 @@ function compararContras(contra1,contra2){
     return false;
   }
 }
+
+function compararUsuarios(nombreDeUsuario){
+  let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
+
+  _
+}
