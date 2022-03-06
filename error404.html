@@ -10,13 +10,14 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
   <meta name="keyword" content="HBO, peliculas, series, ver, entretenimiento, estrenos" />
   <title>HBO</title>
 </head>
 
-<body class="texto-claro">
+<body class="texto-claro"  onload="dibujarNav()">
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-transparente fixed-top" id="navbarIndex">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-scroll-abajo fixed-top" id="navbarIndex">
       <div class="container">
           <a class="navbar-brand" href="index.html"><img src="img/HBOgo-logo.png" alt="logo de HBO"
                   class="logo"></a>
@@ -26,7 +27,7 @@
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarBtnHamburguesa">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto" id="ulNavbar">
             <li class="nav-item active">
               <a class="nav-link active" href="index.html">Inicio</a>
             </li>
@@ -37,10 +38,7 @@
               <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin.html">Administración</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Cerrar Sesión</a>
+              <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
             </li>
           </ul>
         </div>
@@ -91,6 +89,7 @@
     </section>
   </footer>
   <script src="js/bootstrap/bootstrap.min.js"></script>
+  <script type="module" src="js/registro.js"></script>
   <script src="js/app.js"></script>
 </body>
 

@@ -28,32 +28,38 @@ window.onscroll = () => {
     }
 };
 
-function cargarLogin(){
-    let _listaUsuarios = JSON.parse(localStorage.getItem("listaUsuariosLS"));
-    let c = 0;
-
-    for(let i in _listaUsuarios){
-        if(!_listaUsuarios[i].enSesion){
-            location.href ='login.html';
-        }else{
-            c++;
-        }
-
-        if( c > 1 ){
-            _listaUsuarios[i].enSesion = false;
-        }
-    }
-};
-
 
 let modal = document.getElementById('modalDetalle');  //evento llamado solo para detener el video del modal en casi que se cierre el modal mientras este se reproduce, para que no se escuche el ruido del video mientras se continua en la pagina
 modal.addEventListener('hidden.bs.modal',()=>modal.innerHTML = "");
 
-
+document.querySelector('body').addEventListener('load',dibujarNav);
 
 // FUNCIONES
 function leerPelicula(){  // esta funcion trae los datos del LS 
-    let destacada;
+    let c = 0;
+    let linkAnterior = document.referrer;
+    let pagAnterior = "";
+    for(let i in linkAnterior){ //obtengo el path del link de la pagina anterior al index.html
+        if(linkAnterior[i] == "/"){
+            c++;
+        }
+        if(c > 2 && linkAnterior[i] != "/"){
+            pagAnterior += linkAnterior[i];
+        }
+    }
+
+    if(pagAnterior === "login.html"){ // si el path de la pagina anterior es igual a login.html, aparece el cartel de bienvenida al usuario que acaba de ingresar
+        Swal.fire({
+            title: 'Bienvenido a HBO GO',
+            text: 'En esta plataforma podra ver las mejores series y peliculas',
+            showConfirmButton: false,
+            showDenyButton: false,
+            showCancelButton: true,
+            cancelButtonText: 'OK',
+            cancelButtonColor: '#5f9ea0',
+        });
+    }
+    
     if(localStorage.length > 0){  // si hay una lista en el LS
         listaPelicula = JSON.parse(localStorage.getItem('listaPelisKey'));
         peliculaDestacada = JSON.parse(localStorage.getItem('peliculaDestacadaKey'));
@@ -164,6 +170,7 @@ window.dibujarModal = function(id){    // funcion para escribir los datos del ob
       <div class="modal-content bg-transparent border-0 rounded-3">
         <section class="contenedorDetalleImg" id="seccionDetalle">
           <div class="contenedor">
+            <button class="btnCerrar bg-transparent border-0" type="button" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark fa-2x text-light"></i></button>
             <img src="img/series/drama/${peliAbierta.imagen}" class="imagenDetalle rounded-3" alt="${peliAbierta.nombre}">
             <div class="texto-centrado">
               <div class="botonesCabecera">
@@ -221,4 +228,88 @@ function dibujarDestacados(){
     <div class="caja-sombra">
     </div>`;
     document.getElementById('seccionDestacado').innerHTML = sectionDestacado;
+}
+
+function dibujarNav(){
+    let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
+
+    let usuarioEnSesion = _listaUsuarios.find( (usuario) => usuario.enSesion );
+
+    if(usuarioEnSesion.admin){
+        let ulNavbar = document.getElementById("ulNavbar");
+        switch(window.location.pathname){
+            case "/index.html":
+                ulNavbar.innerHTML = `
+                <li class="nav-item active">
+                    <a class="nav-link active" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">Administración</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
+                </li>`;
+            break;
+            case "/contacto.html":
+                ulNavbar.innerHTML = `
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">Administración</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
+                </li>`;
+            break;
+            case "/admin.html":
+                ulNavbar.innerHTML = `
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="admin.html">Administración</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
+                </li>`;
+            break;
+            case "/acerca-de.html":
+                ulNavbar.innerHTML = `
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item active">
+                <a class="nav-link active" href="acerca-de.html">Acerca de nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">Administración</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
+                </li>`;
+            break;
+        }
+    }
 }

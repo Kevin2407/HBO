@@ -11,8 +11,8 @@ let existePeli = false; //variable booleana. Si es false, la peli no existe y es
 let btnModalOpen = document.getElementById("btnModalOpen"); // boton agregar pelicula
 
 // LLAMADAS A FUNCIONES
-leerDatos();
-
+leerDatosPelis();
+leerDatosUsuarios();
 // EVENTLISTENERS
 
 btnModalOpen.addEventListener("click", () => { // llamada al modal al presionar boton de agregar pelicula
@@ -36,7 +36,7 @@ window.agregarPeli = function () {
   let check = publicar(document.getElementById("publiCheck"));
   let img = document.getElementById("img");
   let video = document.getElementsByTagName('video');
-  
+
   if (
     validar(codigo, 2) &&
     validarCodigo(codigo.value) &&
@@ -55,12 +55,12 @@ window.agregarPeli = function () {
       img.value,
       video.value,
       false
-      );
-      
-      
-      // guardar peli en la lista
+    );
+
+
+    // guardar peli en la lista
     listaPelis.push(nuevaPeli);
-    
+
     // guardar los datos en localStorage
     localStorage.setItem("listaPelisKey", JSON.stringify(listaPelis));
 
@@ -70,22 +70,22 @@ window.agregarPeli = function () {
       "Se ha añadido la nueva pelicula/serie",
       "success"
     );
-    
+
     // mostrar cartel de datos guardados
     limpiarFormulario();
-    
+
     // leer datos
-    
-    leerDatos();
-    
+
+    leerDatosPelis();
+
     // cerrar la ventana modal
-    
+
     modalPelis.hide();
-    
+
     // eliminar alert si es que apareció
     if ((alerta.className = "alert alert-danger mx-3")) {
       alerta.className = "alert alert-danger mx-3 d-none";
-      
+
     } else {
       alerta.className = "alert alert-danger mx-3";
       alerta.innerHTML = "Ocurrio un error, verifique los datos ingresados.";
@@ -96,9 +96,9 @@ window.agregarPeli = function () {
 function limpiarFormulario() {
   let formulario = document.getElementById("formPeliculas");
   formulario.reset();
-  
+
   // quitar las tildes de verificacion de los input al resetear
-  
+
   document.getElementById("codigo").className = "form-control";
   document.getElementById("nombrePeli").className = "form-control";
   document.getElementById("descripcion").className = "form-control";
@@ -110,15 +110,15 @@ function limpiarFormulario() {
 
   // document.getElementById('msjEnvio').className = 'alert alert-success mx-3';
   // document.getElementById('msjEnvio').innerHTML = '<p>Se a añadido una nueva película</p>'
-  
+
   existePeli = false;
 }
 
-function leerDatos() {
+function leerDatosPelis() {
   // esta funcion se encargar de leer los datos almacenados en el localStorage
   if (localStorage.length > 0) {
     let _listaPelisProvisoria = JSON.parse(localStorage.getItem("listaPelisKey"));
-    
+
     if (listaPelis.length === 0) {
       listaPelis = _listaPelisProvisoria;
     }
@@ -131,7 +131,7 @@ function dibujarDatos(_listaPelisProvisoria) {
   let dest = ''
   TablaPelis.innerHTML = '';
   let codigoHTML = "";
-  
+
   for (let i in _listaPelisProvisoria) { // revisa si la pelicula esta publicada y establece el texto que dice si esta publicada o no
     let publi;
     if (_listaPelisProvisoria[i].publicado) {
@@ -140,7 +140,7 @@ function dibujarDatos(_listaPelisProvisoria) {
       publi = "No publicado";
     }
 
-    if(_listaPelisProvisoria[i].destacado){ // revisa que elemento esta destacado e introduce la clase que rellena la estrella
+    if (_listaPelisProvisoria[i].destacado) { // revisa que elemento esta destacado e introduce la clase que rellena la estrella
       dest = 'fas';
     } else {
       dest = 'far';
@@ -167,13 +167,13 @@ function dibujarDatos(_listaPelisProvisoria) {
             </tr>
             `;
 
-            TablaPelis.innerHTML += codigoHTML;
-          }
-        }
-        
-        
-        window.eliminarPeli = function (peli) {
-          Swal.fire({
+    TablaPelis.innerHTML += codigoHTML;
+  }
+}
+
+
+window.eliminarPeli = function (peli) {
+  Swal.fire({
     title: '¿Estas seguro?',
     text: "Si lo haces, no podras revertirlo",
     icon: 'warning',
@@ -189,24 +189,24 @@ function dibujarDatos(_listaPelisProvisoria) {
       })
       listaPelis = pelisFiltradas;
       localStorage.setItem('listaPelisKey', JSON.stringify(listaPelis));
-      leerDatos();
-      
-      
-      
+      leerDatosPelis();
+
+
+
       Swal.fire(
         '¡Borrado!',
         'La pelicula fue borrada',
         'success'
-        )
-      }
-    })
-  }
-  
-  
-  window.modificarPelis = function (btnEditar) {
+      )
+    }
+  })
+}
 
-    // limpiar formulario
-    limpiarFormulario()
+
+window.modificarPelis = function (btnEditar) {
+
+  // limpiar formulario
+  limpiarFormulario()
 
   // buscar el objeto a modificar
   let peliEncontrada = listaPelis.find((pelic) => {
@@ -215,14 +215,14 @@ function dibujarDatos(_listaPelisProvisoria) {
 
   console.log(document.getElementById('publiCheck'));
   // cargar los datos en el formulario
-  
+
   document.getElementById('codigo').value = peliEncontrada.codigo;
   document.getElementById('nombrePeli').value = peliEncontrada.nombre;
   document.getElementById('categoria').value = peliEncontrada.categoria;
   document.getElementById('descripcion').value = peliEncontrada.descripcion;
   document.getElementById('img').value = peliEncontrada.imagen;
   document.getElementById('video').value = peliEncontrada.video;
-  
+
   if (peliEncontrada.publicado) { // si la peli esta publicada, el checkbox esta en checked, sino, esta vacio
     document.getElementById('publiCheck').className = 'form-check-input is-valid';
     document.getElementById('publiCheck').setAttribute("checked", "");
@@ -230,26 +230,26 @@ function dibujarDatos(_listaPelisProvisoria) {
     document.getElementById('publiCheck').className = 'form-check-input';
     document.getElementById('publiCheck').removeAttribute("checked");
   }
-  
 
-  
+
+
   existePeli = true;
-  
+
   document.getElementById("tituloModal").innerHTML = "Modificar Pelicula/Serie";
   document.getElementById("labelCodigo").innerHTML = "Codigo";
   document.getElementById('codigo').setAttribute("disabled", "");
-  
-  
-  
+
+
+
   modalPelis.show();
 }
 
 window.guardarPeli = function (event) {
   event.preventDefault();
-  
+
   if (existePeli === true) {
     actualizarDatosPelis()
-    
+
   } else {
     agregarPeli();
   }
@@ -264,12 +264,12 @@ function actualizarDatosPelis() {
   let publiCheck = publicar(document.getElementById('publiCheck'));
   let imagen = document.getElementById('img');
   let video = document.getElementById('video');
-  
-  if(
-  validar(nombre, 1) &&
-  limiteLetras(descripcion) &&
-  validar(imagen, 4) &&
-  validar(video, 1)){
+
+  if (
+    validar(nombre, 1) &&
+    limiteLetras(descripcion) &&
+    validar(imagen, 4) &&
+    validar(video, 1)) {
     for (let i in listaPelis) {
       if (listaPelis[i].codigo === codigo.value) {
         listaPelis[i].nombre = nombre.value;
@@ -280,7 +280,7 @@ function actualizarDatosPelis() {
         listaPelis[i].video = video.value;
       }
     }
-    
+
     localStorage.setItem('listaPelisKey', JSON.stringify(listaPelis));
     limpiarFormulario();
     modalPelis.hide();
@@ -288,36 +288,79 @@ function actualizarDatosPelis() {
       'Modificación exitosa!',
       'Los datos de la pelicula han sido modificados',
       'success'
-      );
-  
-      leerDatos();
+    );
+
+    leerDatosPelis();
   }
 
 }
-  
 
-  window.destacar = function(estrella) {  // funcion que destaca una pelicula al presionar sobre el boton estrella. Solo se puede destacar una pelicula, y al presionar el boton, se rellena la estrella cambiandole la clase.
-    let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));  // trae el array de peliculas de LS a la variable _listaPelis
-    let btnEstrella;
-  
-    for(let i in _listaPelis){  // recorre uno por uno los elementos de pelicula de array para ver que el seleccionado sea el unico destacado
-      btnEstrella = document.getElementById(`destacar${_listaPelis[i].codigo}`);
-      if(btnEstrella.id === estrella.id){ // si el codigo del boton presionado coincide con el id de la pelicula, significa que esta es la pelicula que queremos destacar, y procede a rellenar la estrella y poner su variable en true
-        if(_listaPelis[i].destacado){
-          btnEstrella.className = "far fa-star fa-2x text-warning border-0 bg-transparent";
-          _listaPelis[i].destacado = false;
-        }else{
-          btnEstrella.className = "fas fa-star fa-2x text-warning border-0 bg-transparent";
-          _listaPelis[i].destacado = true;
-        }
-      }
-      if(_listaPelis[i].destacado && btnEstrella.id != estrella.id){  // si esta destacado, quita la clase que rellena la estrella y pone la variable destacado en false
+
+window.destacar = function (estrella) {  // funcion que destaca una pelicula al presionar sobre el boton estrella. Solo se puede destacar una pelicula, y al presionar el boton, se rellena la estrella cambiandole la clase.
+  let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));  // trae el array de peliculas de LS a la variable _listaPelis
+  let btnEstrella;
+
+  for (let i in _listaPelis) {  // recorre uno por uno los elementos de pelicula de array para ver que el seleccionado sea el unico destacado
+    btnEstrella = document.getElementById(`destacar${_listaPelis[i].codigo}`);
+    if (btnEstrella.id === estrella.id) { // si el codigo del boton presionado coincide con el id de la pelicula, significa que esta es la pelicula que queremos destacar, y procede a rellenar la estrella y poner su variable en true
+      if (_listaPelis[i].destacado) {
         btnEstrella.className = "far fa-star fa-2x text-warning border-0 bg-transparent";
         _listaPelis[i].destacado = false;
+      } else {
+        btnEstrella.className = "fas fa-star fa-2x text-warning border-0 bg-transparent";
+        _listaPelis[i].destacado = true;
       }
     }
-    localStorage.setItem('listaPelisKey',JSON.stringify(_listaPelis)); // manda el nuevo array con el nuevo destacado al LS
-
+    if (_listaPelis[i].destacado && btnEstrella.id != estrella.id) {  // si esta destacado, quita la clase que rellena la estrella y pone la variable destacado en false
+      btnEstrella.className = "far fa-star fa-2x text-warning border-0 bg-transparent";
+      _listaPelis[i].destacado = false;
+    }
   }
+  localStorage.setItem('listaPelisKey', JSON.stringify(_listaPelis)); // manda el nuevo array con el nuevo destacado al LS
+
+}
 
 
+// PARTE DE USUARIOS
+
+function leerDatosUsuarios() {
+  let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
+  let codigoUsuarioHTML = "";
+  let tBodyUsuarios = document.getElementById('tBodyUsuarios');
+  let idCheck = "";
+
+  for(let i in _listaUsuarios){
+    codigoUsuarioHTML = `
+    <tr>
+    <th scope="row">${_listaUsuarios[i].nomUsuario}</th>
+        <td scope="row">${_listaUsuarios[i].nombre}</td>
+        <td scope="row">${_listaUsuarios[i].email}</td>
+        <td scope="row">${_listaUsuarios[i].telefono}</td>
+        <td scope="row" class="text-center"><input type="checkbox" class="form-check-input" id="check${_listaUsuarios[i].nomUsuario}" onchange="aprobar(this)"></td>
+        <td class="">
+        <button class="btn btn-danger bPaddTrash" onclick="eliminarPeli(this)" id="${_listaUsuarios[i].nomUsuario}">
+        <i class="fas fa-trash-alt"></i>
+            </button>
+        </td>
+    </tr>
+            `;
+    if(!_listaUsuarios[i].admin){
+      tBodyUsuarios.innerHTML += codigoUsuarioHTML;
+      console.log(document.getElementById(`check${_listaUsuarios[i].nomUsuario}`));
+      if(_listaUsuarios[i].aprobado){
+        document.getElementById(`check${_listaUsuarios[i].nomUsuario}`).setAttribute('checked','');
+      }
+    }
+  }
+}
+
+window.aprobar = function(input){
+  let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
+  let usuario = _listaUsuarios.find( (usu) => "check" + usu.nomUsuario === input.id);
+  if(input.checked){
+    usuario.aprobado = true;
+  }else{
+    usuario.aprobado = false;
+  }
+  localStorage.setItem('listaUsuariosLS',JSON.stringify(_listaUsuarios))
+}

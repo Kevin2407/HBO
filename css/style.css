@@ -25,6 +25,10 @@ body{
     color: whitesmoke;
 }
 
+.color-de-icono :hover{
+    color: #5f9ea0;
+}
+
 .lista{
     color: whitesmoke;
     list-style: none;
@@ -337,6 +341,14 @@ textarea {
 }
 .texto-centrado p {
     font-size: 20px;
+}
+
+.btnCerrar{
+    position: absolute;
+    top: 4%;
+    left: 95%;
+    transform: translate(-48%, -16%);
+    z-index: 20;
 }
 
 .botonesCabecera{

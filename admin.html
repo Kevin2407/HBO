@@ -15,9 +15,9 @@
     <title>HBO</title>
 </head>
 
-<body>
+<body">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-transparente fixed-top" id="navbarIndex">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-scroll-abajo fixed-top" id="navbarIndex">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><img src="img/HBOgo-logo.png" alt="logo de HBO"
                         class="logo"></a>
@@ -27,7 +27,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarBtnHamburguesa">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto" id="ulNavbar">
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Inicio</a>
                         </li>
@@ -41,14 +41,15 @@
                             <a class="nav-link active" href="admin.html">Administración</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Cerrar Sesión</a>
+                            <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main class="container my-5 seccionAdmin">
+    <main>
+        <div class="container my-5 seccionAdmin">
         <section class="row">
             <div class="col-10">
                 <h3>Peliculas disponibles</h3>
@@ -73,10 +74,30 @@
                     </tr>
                 </thead>
                 <tbody id="tBodyPelis">
-
                 </tbody>
             </table>
         </section>
+        </div>
+
+        <div class="container my-5 seccionAdmin">
+            <h3>Usuarios</h3>
+            <section class="table-responsive">
+                <table class="table" id="tablaUsuarios">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre de usuario</th>
+                            <th scope="col">Nombre y apellido</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Aprobado</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyUsuarios">
+                    </tbody>
+                </table>
+            </section>
+            </div>
     </main>
 
     <!-- modal Pelis -->
@@ -212,6 +233,7 @@
         </section>
     </footer>
     <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="module" src="js/registro.js"></script>
     <script src="js/validaciones.js"></script>
     <script type="module" src="js/admin.js"></script>
 </body>
