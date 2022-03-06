@@ -48,7 +48,7 @@ function leerPelicula(){  // esta funcion trae los datos del LS
         }
     }
 
-    if(pagAnterior === "login.html"){ // si el path de la pagina anterior es igual a login.html, aparece el cartel de bienvenida al usuario que acaba de ingresar
+    if(pagAnterior === "login.html" && window.location.pathname === "index.html"){ // si el path de la pagina anterior es igual a login.html, aparece el cartel de bienvenida al usuario que acaba de ingresar
         Swal.fire({
             title: 'Bienvenido a HBO GO',
             text: 'En esta plataforma podra ver las mejores series y peliculas',
