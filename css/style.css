@@ -69,6 +69,8 @@ body{
 
 .tituloCategorias{
     margin: 10px 0 5px 0;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .imgSeries{
@@ -451,4 +453,9 @@ textarea {
     .contIframe {
         height: 450px;
     }
+}
+
+.my-6{
+    margin-top: 8rem;
+    margin-bottom: 4rem;
 }

@@ -89,48 +89,117 @@ function leerPelicula(){  // esta funcion trae los datos del LS
 }
 
 function dibujarPeli(){ //imprime el codigo de las cards de peliculas en las grillas del index, segun su categoria correspondiente
+    let filtroTexto = document.getElementById('nombreFiltro');
+    let filtroSelector = document.getElementById('categoriaFiltro');
     // vaciar cards del inicio
-    drama.innerHTML = "";
-    accion.innerHTML = "";
-    comedia.innerHTML = "";
-    infantil.innerHTML = "";
+    drama.innerHTML = `<h5 class="tituloCategorias">Drama</h5>`;
+    accion.innerHTML = `<h5 class="tituloCategorias">Acción</h5>`;
+    comedia.innerHTML = `<h5 class="tituloCategorias">Comedia</h5>`;
+    infantil.innerHTML = `<h5 class="tituloCategorias">Infantiles</h5>`;
+
+    // booleanos que indican si parte del nombre introducido en el filtro se encuentra en el nombre de la peli
+    let bDrama = false;
+    let bAccion = false;
+    let bComedia = false;
+    let bInfantiles = false;
+    let cont = 0;
 
         // Escribe el codigo HTML de la card en la grilla de drama
     for(let i in categoriaDrama){
-        if(categoriaDrama[i].publicado){
+        cont = 0;
+        for(let j in filtroTexto.value){
+            if( filtroTexto.value[j] === categoriaDrama[i].nombre[j].toUpperCase() || filtroTexto.value[j] === categoriaDrama[i].nombre[j].toLowerCase())
+                cont++;
+        }
+        console.log(categoriaDrama[i].nombre.toUpperCase())
+        if(cont === filtroTexto.value.length){
+            bDrama = true;
+        }else{
+            bDrama = false;
+        }
+        if(categoriaDrama[i].publicado && (filtroSelector.value === "Drama" || filtroSelector.value === "") && (bDrama || filtroTexto.value === "")){
             let dramaHTML = `<article class="col-sm-6 col-md-4 col-lg-3" >
             <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button></article>`;
             drama.innerHTML += dramaHTML;
+            drama.className = 'row text-center mb-5';
+        }else if( drama.innerHTML === `<h5 class="tituloCategorias">Drama</h5>`){
+            drama.innerHTML = '';
+            drama.className = 'display-none';
         }
     }
-
+    
         // Escribe el codigo HTML de la card en la grilla de accion
     for(let i in categoriaAccion){
-        if(categoriaAccion[i].publicado){
+        cont = 0;
+        for(let j in filtroTexto.value){
+            if( filtroTexto.value[j] === categoriaAccion[i].nombre[j].toUpperCase() || filtroTexto.value[j] === categoriaAccion[i].nombre[j].toLowerCase())
+                cont++;
+        }
+        console.log(categoriaAccion[i].nombre.toUpperCase())
+        if(cont === filtroTexto.value.length){
+            bAccion = true;
+        }else{
+            bAccion = false;
+        }
+        if(categoriaAccion[i].publicado && (filtroSelector.value === "Accion" || filtroSelector.value === "") && (bAccion || filtroTexto.value === "")){
             let accionHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
             <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaAccion[i].codigo}"><img src="img/series/drama/${categoriaAccion[i].imagen}" alt="Pelicula/serie ${categoriaAccion[i].nombre}" class="imgSeries"></button>
             </article>`;
             accion.innerHTML += accionHTML;
+            accion.className = 'row text-center mb-5';
+        }else if( accion.innerHTML === `<h5 class="tituloCategorias">Acción</h5>`){
+            accion.innerHTML = '';
+            accion.className = 'display-none';
         }
     }
 
         // Escribe el codigo HTML de la card en la grilla de comedia
     for(let i in categoriaComedia){
-        if(categoriaComedia[i].publicado){
+        cont = 0;
+        for(let j in filtroTexto.value){
+            if( filtroTexto.value[j] === categoriaComedia[i].nombre[j].toUpperCase() || filtroTexto.value[j] === categoriaComedia[i].nombre[j].toLowerCase())
+                cont++;
+        }
+        console.log(categoriaComedia[i].nombre.toUpperCase())
+        if(cont === filtroTexto.value.length){
+            bComedia = true;
+        }else{
+            bComedia = false;
+        }
+        if(categoriaComedia[i].publicado && (filtroSelector.value === "Comedia" || filtroSelector.value === "") && (bComedia || filtroTexto.value === "")){
             let comediaHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
             <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaComedia[i].codigo}"><img src="img/series/drama/${categoriaComedia[i].imagen}" alt="Pelicula/serie ${categoriaComedia[i].nombre}" class="imgSeries"></button>
             </article>`;
             comedia.innerHTML += comediaHTML;
+            comedia.className = 'row text-center mb-5';
+        }else if( comedia.innerHTML === `<h5 class="tituloCategorias">Comedia</h5>`){
+            comedia.innerHTML = '';
+            comedia.className = 'display-none';
         }
     }
 
         // Escribe el codigo HTML de la card en la grilla de infantiles
     for(let i in categoriaInfantiles){
-        if(categoriaInfantiles[i].publicado){
+        cont = 0;
+        for(let j in filtroTexto.value){
+            if( filtroTexto.value[j] === categoriaInfantiles[i].nombre[j].toUpperCase() || filtroTexto.value[j] === categoriaInfantiles[i].nombre[j].toLowerCase())
+                cont++;
+        }
+        console.log(categoriaInfantiles[i].nombre.toUpperCase())
+        if(cont === filtroTexto.value.length){
+            bInfantiles = true;
+        }else{
+            bInfantiles = false;
+        }
+        if(categoriaInfantiles[i].publicado && (filtroSelector.value === "Infantil" || filtroSelector.value === "") && (bInfantiles || filtroTexto.value === "")){
             let infantilHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
             <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaInfantiles[i].codigo}"><img src="img/series/drama/${categoriaInfantiles[i].imagen}" alt="Pelicula/serie ${categoriaInfantiles[i].nombre}" class="imgSeries"></button>
             </article>`;
             infantil.innerHTML += infantilHTML;
+            infantil.className = 'row text-center mb-5';
+        }else if( infantil.innerHTML === `<h5 class="tituloCategorias">Infantiles</h5>`){
+            infantil.innerHTML = '';
+            infantil.className = 'display-none';
         }
     }
 }

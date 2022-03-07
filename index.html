@@ -61,25 +61,32 @@
       </div> -->
 
     </section>
-
+    <section class="d-flex in-line justify-content-center my-6">
+      <h3>Búsqueda</h3>
+      <input type="text" class="form-control w-25 mx-3" onkeyup="dibujarPeli()" id="nombreFiltro">
+      <select class="form-select w-25" name="categoria" onchange="dibujarPeli()" id="categoriaFiltro">
+        <option value="">Elija una categoria</option>
+        <option value="Drama">Drama</option>
+        <option value="Accion">Acción</option>
+        <option value="Comedia">Comedia</option>
+        <option value="Infantil">Infantil</option>
+    </select>
+    </section>
     
     <section class="container-fluid m-0 p-0 row">
-      <h4 class="tituloCategorias text-center display-4">categorías</h4>
-
-      <h5 class="tituloCategorias">Drama</h5>
-      <div class="row text-center mb-5" id="grillasDrama">
+      <div class="display-none" id="grillasDrama">
+        
 
       </div>
-      <h5 class="tituloCategorias">Acción</h5>
-      <div class="row text-center mb-5" id="grillasAccion">
+      <div class="display-none" id="grillasAccion">
 
       </div>
-      <h5 class="tituloCategorias">Comedia</h5>
-      <div class="row text-center mb-5" id="grillasComedia">
+      
+      <div class="display-none" id="grillasComedia">
 
       </div>
-      <h5 class="tituloCategorias">Infantiles</h5>
-      <div class="row text-center mb-5" id="grillasInfantiles">
+      
+      <div class="display-none" id="grillasInfantiles">
 
       </div>
     </section>
