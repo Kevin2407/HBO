@@ -327,7 +327,8 @@ function leerDatosUsuarios() {
   let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
   let codigoUsuarioHTML = "";
   let tBodyUsuarios = document.getElementById('tBodyUsuarios');
-  let idCheck = "";
+
+  tBodyUsuarios.innerHTML = "";
 
   for(let i in _listaUsuarios){
     codigoUsuarioHTML = `
@@ -338,7 +339,7 @@ function leerDatosUsuarios() {
         <td scope="row">${_listaUsuarios[i].telefono}</td>
         <td scope="row" class="text-center"><input type="checkbox" class="form-check-input" id="check${_listaUsuarios[i].nomUsuario}" onchange="aprobar(this)"></td>
         <td class="">
-        <button class="btn btn-danger bPaddTrash" onclick="eliminarPeli(this)" id="${_listaUsuarios[i].nomUsuario}">
+        <button class="btn btn-danger bPaddTrash" onclick="borrarUsuario(this)" id="${_listaUsuarios[i].nomUsuario}">
         <i class="fas fa-trash-alt"></i>
             </button>
         </td>
@@ -363,4 +364,34 @@ window.aprobar = function(input){
     usuario.aprobado = false;
   }
   localStorage.setItem('listaUsuariosLS',JSON.stringify(_listaUsuarios))
+}
+
+window.borrarUsuario = function(input){
+  Swal.fire({
+    title: '¿Estas seguro?',
+    text: "Si lo haces, no podras revertirlo",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Si, borrar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
+      let usuariosFiltrados = _listaUsuarios.filter(function (usuFil) {
+        return usuFil.nomUsuario != input.id;
+      })
+      localStorage.setItem('listaUsuariosLS', JSON.stringify(usuariosFiltrados));
+      leerDatosUsuarios();
+
+
+
+      Swal.fire(
+        '¡Borrado!',
+        'El usuario fue borrado',
+        'success'
+      )
+    }
+  })
 }

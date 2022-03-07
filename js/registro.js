@@ -79,7 +79,7 @@ function inicializarUsuarios() {
             _listaUsuarios[i].enSesion = false;
         }
     }
-    if (c === 0 && (window.location.pathname != '/login.html' && window.location.pathname != '/registro.html')) {
+    if (c === 0 && (window.location.pathname != '/login.html' && window.location.pathname != '/registro.html' && window.location.pathname != '/rec-contra.html')) {
         location.href = 'login.html';
     }
 }
@@ -158,3 +158,54 @@ window.cerrarSesion = function () {
     });
 
 }
+
+
+// recuperacion de contraseña
+
+window.recContra = function(){
+    let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
+    let usuario;
+    Swal.fire({
+        title: 'Introduzca su email para recuperar la contraseña',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Enviar',
+        confirmButtonColor: '#5f9ea0',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+            let b;
+            usuario = _listaUsuarios.find(cuenta => cuenta.email === login);
+            if(usuario === undefined){
+                Swal.showValidationMessage(
+                    `El email ${login} no esta registrado`
+                )
+            }
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+        if (result.isConfirmed) {
+            console.log(usuario);
+            emailjs.send("service_2qem7iv","template_l3vqgtj",{
+                to_name: usuario.nombre,
+                from_name: "HBO GO",
+                message: `Hola ${usuario.nombre}, ingresando a este link podras recuperar tu contraseña: https://hbo-go.netlify.app/rec-contra.html`,
+                }).then((response)=>{
+                    console.log(response);
+                },(error)=>{
+                    console.log(error);
+                    alert("Ocurrió un error al enviar la consulta");
+                })
+            Swal.fire({
+            title: `Se le envió un mail de recuperación de contraseña`,
+            showConfirmButton: true,
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#5f9ea0',
+            })
+        }
+    })
+}
+

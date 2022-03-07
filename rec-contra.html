@@ -12,13 +12,8 @@
   <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function() {
-    emailjs.init("user_ddoRn0tnonZZiPk0AYJm3");
-    })();
-    </script>
   <meta name="keyword" content="HBO, peliculas, series, ver, entretenimiento, estrenos" />
-  <title>Ingresa</title>
+  <title>Recuperación de contraseña</title>
 </head>
 
 <body class="">
@@ -28,56 +23,27 @@
   </header>
   <main>
     <section class="container seccionClara">
-      <h4>Inicie sesión</h4>
-      <form onsubmit="ingresar(event)">
+      <h4>Ingrese una nueva contraseña</h4>
+      <form onsubmit="nuevaContra(event)">
         <div>
-          <input class="login-input" type="text" name="email" id="nombreLogin" placeholder="Email o nombre de usuario">
-          <div class="valid-feedback">
-          </div>
-          <div  class="invalid-feedback">
-              <p>El nombre de usuario es incorrecto</p>
-          </div>
+            <input class="login-input" type="password" name="contrasenia" id="contraLogin" placeholder="Nueva contraseña">
         </div>
         <div>
-          <input class="login-input" type="password" name="contrasenia" id="contraLogin" placeholder="Contraseña">
-          <div class="valid-feedback">
-          </div>
-          <div  class="invalid-feedback">
-              <p>La contraseña es incorrecta</p>
-          </div>
+            <input class="login-input" type="password" name="contrasenia" id="contraLogin" placeholder="Repita nueva contraseña">
         </div>
-        <div id="msjNoCuenta"></div>
-        <div  class="invalid-feedback">
-          <p>La cuenta no fue aprobada o no existe</p>
-        </div>
-      <Button type="submit" class="btn">Ingrese</Button>
+        <div class="invalid-feedback">Las contraseñas no coinciden</div>
+      <Button type="submit" class="btn">Cambiar contraseña</Button>
       </form>
-      <p class="login-text">¿Olvidaste la <span class="texto-azul" onclick="recContra()">contraseña</span>?</p>
-      <p class="login-text">¿No tenés cuenta? <a class="texto-azul" href="registro.html">Registrate</a></p>
     </section>
   </main>
   <footer class="bg-transparent color-de-icono py-5">
     <section class="container">
       <article class="row text-secondary mt-3 text-center">
-        <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+        <div class="col-sm-12 col-md-4 col-lg-4 mb-4">
           <a class="navbar-brand" href="index.html"><img src="img/HBO-logo.png" alt="logo de HBO"
               class="logoFooter"></a>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
-          <ul class="lista">
-            <li>
-              <a href="index.html" class="text-secondary">Inicio</a>
-            </li>
-            <li>
-              <a href="contacto.html" class="text-secondary">Contacto</a>
-            </li>
-            <li>
-              <a href="acerca-de.html" class="text-secondary">Acerca de</a>
-            </li>
-            <li><a href="login.html" class="text-secondary">Login</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+        <div class="col-sm-12 col-md-4 col-lg-4 mb-4">
           <h6>Nuestras redes sociales</h4>
             <a href="https://www.facebook.com/HBOLatAm" target="blank" class="me-2 color-de-icono"><i
                 class="fab fa-facebook-square fa-3x"></i></a>
@@ -86,7 +52,7 @@
             <a href="https://www.instagram.com/hbolatam/" target="blank" class="me-2 color-de-icono"><i
                 class="fab fa-instagram-square fa-3x"></i></a>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+        <div class="col-sm-12 col-md-4 col-lg-4 mb-4">
           <p>&copy; Todos los derechos reservados</p>
         </div>
       </article>

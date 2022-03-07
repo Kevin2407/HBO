@@ -29,6 +29,16 @@ body{
     color: #5f9ea0;
 }
 
+.texto-azul{
+    color: #5f9ea0;
+    text-decoration: underline;
+}
+
+.texto-azul:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .lista{
     color: whitesmoke;
     list-style: none;
