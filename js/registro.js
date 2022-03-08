@@ -9,7 +9,7 @@ window.crearUsuario = function (event) {
     event.preventDefault();
     let nombre = document.getElementById('nombreApellido');
     let nomUsuario = document.getElementById('nombreUsuario');
-    let email = document.getElementById('email');
+    let email = document.getElementById('emailR');
     let telelfono = document.getElementById('numeroTelefono');
     let contra = document.getElementById('contraseniaR');
     let contraR = document.getElementById('contraseniaRrep');
@@ -96,37 +96,38 @@ window.ingresar = function (event) {
     let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
     let nombreValido = false, contraValida = false;
 
-    for (let i in _listaUsuarios) {
-        if (_listaUsuarios[i].nomUsuario === nomUsuBuscado.value || _listaUsuarios[i].email === nomUsuBuscado.value) {
-            nombreValido = true;
-        }
+    let usuarioIngresado = _listaUsuarios.find(usuario => usuario.nomUsuario === nomUsuBuscado.value || usuario.email === nomUsuBuscado.value);
+    let indiceUsuarioIngresado = _listaUsuarios.findIndex(usuario => usuario.nomUsuario === nomUsuBuscado.value || usuario.email === nomUsuBuscado.value);
 
-        if (_listaUsuarios[i].contrasenia === contraBuscada.value) {
+    if (usuarioIngresado != undefined) {
+        nombreValido = true;
+        if (usuarioIngresado.contrasenia === contraBuscada.value) {
             contraValida = true;
         }
-
-        if (nombreValido && contraValida && _listaUsuarios[i].aprobado) {
-            for (let j in _listaUsuarios) {
-                if (_listaUsuarios[i].enSesion) {
-                    _listaUsuarios.enSesion = false;
-                }
-            }
-            _listaUsuarios[i].enSesion = true;
-            localStorage.setItem('listaUsuariosLS', JSON.stringify(_listaUsuarios));
-            location.href = 'index.html';
-        }else if(nombreValido && contraValida){
-            nomUsuBuscado.className = 'login-input is-valid';
-            contraBuscada.className = 'login-input is-valid';
-            document.getElementById('msjNoCuenta').className = 'is-invalid';
-        }
-
-
     }
+    if (nombreValido && contraValida && usuarioIngresado.aprobado) {
+        for (let i in _listaUsuarios) {
+            if (_listaUsuarios[i].enSesion) {
+                _listaUsuarios[i].enSesion = false;
+            }
+        }
+        usuarioIngresado.enSesion = true;
+        _listaUsuarios[indiceUsuarioIngresado] = usuarioIngresado;
+        localStorage.setItem('listaUsuariosLS', JSON.stringify(_listaUsuarios));
+        location.href = 'index.html';
+    }else if(nombreValido && contraValida){
+        nomUsuBuscado.className = 'login-input is-valid';
+        contraBuscada.className = 'login-input is-valid';
+        document.getElementById('msjNoCuenta').className = 'is-invalid';
+    }
+
 
     if (!nombreValido) {
         nomUsuBuscado.className = "login-input is-invalid";
         document.getElementById('msjNoCuenta').className = '';
     } else {
+        nomUsuBuscado.className = "login-input is-valid";
+        document.getElementById('msjNoCuenta').className = '';
         if (!contraValida) {
             contraBuscada.className = "login-input is-invalid";
             document.getElementById('msjNoCuenta').className = '';

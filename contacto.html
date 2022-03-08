@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://kit.fontawesome.com/e82d308fa1.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_ddoRn0tnonZZiPk0AYJm3");
+        })();
+    </script>
     <meta name="keyword" content="HBO, peliculas, series, ver, entretenimiento, estrenos" />
     <title>HBO</title>
 </head>
@@ -48,16 +54,35 @@
     <main>
         <section class="container seccionClara">
             <h4>Contactanos</h4>
-            <form>
-                <input onblur="validar(this,1)" class="login-input" type="text" name="nombreApellido"
-                    id="nombreApellido" placeholder="Nombre y apellido">
-                <input onblur="validar(this,3)" class="login-input" type="email" name="email" id="email"
-                    placeholder="E-mail">
-                <input onblur="validar(this,2)" class="login-input" type="tel" name="numero de telefono"
-                    id="numeroTelefono" placeholder="Numero de Telefono">
-                <textarea onblur="validar(this,1)" rows="5" placeholder="Ingrese su consulta" class="form-control my-3"
-                    required></textarea>
-                <Button type="button" class="btn">Enviar</Button>
+            <form onsubmit="enviarMail(event)">
+                <div class="my-3">
+                    <input onblur="validar(this,1)" class="form-control" type="text" name="nombreApellido" id="nombreApellido" placeholder="Nombre y apellido">
+                    <div class="invalid-feedback">
+                        <p>Ingrese un texto</p>
+                    </div>
+                </div>
+                <div class="my-3">
+                    <input onblur="validar(this,3)" class="form-control" type="email" name="email" id="email"
+                        placeholder="E-mail">
+                    <div class="invalid-feedback">
+                        <p>Ingrese un E-mail valido</p>
+                    </div>
+                </div>
+                <div class="my-3">
+                    <input onblur="validar(this,2)" class="form-control" type="tel" name="numero de telefono"
+                        id="numeroTelefono" placeholder="Numero de Telefono">
+                    <div class="invalid-feedback">
+                        <p>Ingrese un numero valido</p>
+                    </div>
+                </div>
+                <div class="my-3">
+                    <textarea onblur="validar(this,1)" rows="5" placeholder="Ingrese su consulta" class="form-control"
+                        id="consulta" required></textarea>
+                    <div class="invalid-feedback">
+                        <p>Ingrese un texto</p>
+                    </div>
+                </div>
+                <Button type="submit" class="btn">Enviar</Button>
             </form>
         </section>
     </main>
@@ -98,6 +123,7 @@
     </footer>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script type="module" src="js/registro.js"></script>
+    <script src="js/validaciones.js"></script>
     <script src="js/app.js"></script>
 </body>
 

@@ -64,32 +64,6 @@ function publicar(checkbox){
   }
 }
 
-function enviarMail(){
-  // envioelmail.then(funcion si todo salio bien, funcion cuando algo salio)
-  emailjs.send("service_skyw81f","template_NQ91Q5cI",{
-    to_name: "Administrador",
-    from_name: document.getElementById('email').value,
-    message_html: `Nombre y Apellido: ${document.getElementById('nombre').value} -
-    Telefono: ${document.getElementById('telefono').value} -
-    Consulta: ${document.getElementById('consulta').value}`,
-    }).then(
-      function (response){
-        console.log(response);
-        // agregar el alerta que todo salio bien
-        alert('los datos se enviaron');
-      }, function (error){
-        console.log(error);
-        alert('fallo el envio');
-      }
-    )
-}
-
-
-
-
-
-
-
 
 function validarCodigo(cod){ // esta funcion revisa que el codigo proporcionado no sea repetido
   let _b = false;
