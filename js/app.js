@@ -84,6 +84,8 @@ function leerPelicula() {  // esta funcion trae los datos del LS
         }
         dibujarPeli();
         dibujarDestacados();
+    }else{
+        localStorage.setItem('listaPelisKey',JSON.stringify(listaPelicula));
     }
 }
 

@@ -57,7 +57,7 @@ window.agregarPeli = function () {
       false
     );
 
-    console.log(nuevaPeli)
+    console.log(listaPelis)
 
 
     // guardar peli en la lista
