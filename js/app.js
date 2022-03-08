@@ -288,6 +288,8 @@ window.dibujarModal = function (id) {    // funcion para escribir los datos del 
 
 function dibujarDestacados() {
     let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));  // trae el array de peliculas de LS a la variable _listaPelis
+    if(_listaPelis.length > 0){
+
     let destacado = _listaPelis.find((encontrada) => encontrada.destacado);
 
     let sectionDestacado = `    
@@ -307,6 +309,7 @@ function dibujarDestacados() {
     <div class="caja-sombra">
     </div>`;
     document.getElementById('seccionDestacado').innerHTML = sectionDestacado;
+    }
 }
 
 function dibujarNav() {

@@ -11,6 +11,7 @@ let existePeli = false; //variable booleana. Si es false, la peli no existe y es
 let btnModalOpen = document.getElementById("btnModalOpen"); // boton agregar pelicula
 
 // LLAMADAS A FUNCIONES
+console.log(listaPelis);
 leerDatosPelis();
 leerDatosUsuarios();
 // EVENTLISTENERS
@@ -57,7 +58,7 @@ window.agregarPeli = function () {
       false
     );
 
-    console.log(listaPelis)
+    console.log(listaPelis);
 
 
     // guardar peli en la lista
@@ -118,13 +119,15 @@ function limpiarFormulario() {
 
 function leerDatosPelis() {
   // esta funcion se encargar de leer los datos almacenados en el localStorage
-  if (localStorage.length > 0) {
-    let _listaPelisProvisoria = JSON.parse(localStorage.getItem("listaPelisKey"));
+  let _listaPelisProvisoria = JSON.parse(localStorage.getItem("listaPelisKey"));
+  console.log(_listaPelisProvisoria)
+  if (_listaPelisProvisoria.length > 0) {
 
     if (listaPelis.length === 0) {
       listaPelis = _listaPelisProvisoria;
     }
     dibujarDatos(_listaPelisProvisoria);
+
   }
 }
 
