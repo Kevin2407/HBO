@@ -131,21 +131,11 @@ function limiteLetras(input){  // esta funcion revisa que la descripcion tenga e
     document.getElementById('divInvalidDescripcion').innerHTML = `<p>La descripcion debe tener entre 10 y 100 caracteres (${input.value.length})</p>`;
   }
 
-  console.log(_b && _c)
-
   return (_b && _c);
 }
 
 
 // registro
-
-
-
-
-
-function validarNomUsuario(input){
-
-}
 
 function compararContras(contra1,contra2){
   if(contra1 == contra2){

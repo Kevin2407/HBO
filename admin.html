@@ -15,7 +15,7 @@
     <title>HBO</title>
 </head>
 
-<body onload="dibujarNav()">
+<body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark navbar-scroll-abajo fixed-top" id="navbarIndex">
             <div class="container">
@@ -181,12 +181,9 @@
                             </div> -->
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" id="labelCodigo">Video <span class="text-danger">*</span></label>
-                            <input type="text" id="video" class="form-control" onblur="validar(this,1)">
+                            <label class="form-label" id="labelCodigo">Video</label>
+                            <input type="text" id="video" class="form-control">
                             <div class="valid-feedback">
-                            </div>
-                            <div class="invalid-feedback">
-                                <p>Ingrese un URL valido</p>
                             </div>
                         </div>
                         <div class="alert alert-success mx-3 d-none" role="alert" id='msjEnvio'></div>

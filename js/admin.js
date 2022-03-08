@@ -57,6 +57,8 @@ window.agregarPeli = function () {
       false
     );
 
+    console.log(nuevaPeli)
+
 
     // guardar peli en la lista
     listaPelis.push(nuevaPeli);
@@ -347,7 +349,6 @@ function leerDatosUsuarios() {
             `;
     if(!_listaUsuarios[i].admin){
       tBodyUsuarios.innerHTML += codigoUsuarioHTML;
-      console.log(document.getElementById(`check${_listaUsuarios[i].nomUsuario}`));
       if(_listaUsuarios[i].aprobado){
         document.getElementById(`check${_listaUsuarios[i].nomUsuario}`).setAttribute('checked','');
       }
