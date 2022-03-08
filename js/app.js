@@ -315,7 +315,12 @@ function dibujarDestacados() {
 function dibujarNav() {
     let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
 
-    let usuarioEnSesion = _listaUsuarios.find((usuario) => usuario.enSesion);
+    let usuarioEnSesion
+    for(let i in _listaUsuarios){
+        if(_listaUsuarios[i].enSesion){
+            usuarioEnSesion = _listaUsuarios[i];
+        }
+    }
 
     if (usuarioEnSesion.admin) {
         let ulNavbar = document.getElementById("ulNavbar");

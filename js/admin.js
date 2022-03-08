@@ -120,8 +120,8 @@ function limpiarFormulario() {
 function leerDatosPelis() {
   // esta funcion se encargar de leer los datos almacenados en el localStorage
   let _listaPelisProvisoria = JSON.parse(localStorage.getItem("listaPelisKey"));
-  console.log(_listaPelisProvisoria)
-  if (_listaPelisProvisoria.length > 0) {
+  console.log(localStorage.length)
+  if (localStorage.length > 1) {
 
     if (listaPelis.length === 0) {
       listaPelis = _listaPelisProvisoria;
