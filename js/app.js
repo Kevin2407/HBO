@@ -88,12 +88,12 @@ function leerPelicula() {  // esta funcion trae los datos del LS
     }
 }
 
-function dibujarTituloCategoria(listaCategoria, categoria, nombre) {
+function dibujarTituloCategoria(listaCategoria, titulo, nombre) {
     if (listaCategoria.length > 0) {
-        categoria.innerHTML = `<h5 class="tituloCategorias">${nombre}</h5>`
+        titulo.innerHTML = `<div><h5 class="tituloCategorias">${nombre}</h5></div>`
         return true;
     } else {
-        categoria.innerHTML = "";
+        titulo.innerHTML = "";
         return false;
     }
 }
@@ -104,15 +104,15 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
         let filtroSelector = document.getElementById('categoriaFiltro');
     
         // vaciar cards del inicio
-        dibujarTituloCategoria(categoriaDrama, drama, "Drama");
-        dibujarTituloCategoria(categoriaAccion, accion, "Acción");
-        dibujarTituloCategoria(categoriaComedia, comedia, "Comedia");
-        dibujarTituloCategoria(categoriaInfantiles, infantil, "Infantiles");
+        dibujarTituloCategoria(categoriaDrama, tDrama, "Drama");
+        dibujarTituloCategoria(categoriaAccion, tAccion, "Acción");
+        dibujarTituloCategoria(categoriaComedia, tComedia, "Comedia");
+        dibujarTituloCategoria(categoriaInfantiles, tInfantiles, "Infantiles");
     
-        if (!dibujarTituloCategoria(categoriaDrama, drama, "Drama") &&
-            !dibujarTituloCategoria(categoriaAccion, accion, "Acción") &&
-            !dibujarTituloCategoria(categoriaComedia, comedia, "Comedia") &&
-            !dibujarTituloCategoria(categoriaInfantiles, infantil, "Infantiles")) {
+        if (!dibujarTituloCategoria(categoriaDrama, tDrama, "Drama") &&
+            !dibujarTituloCategoria(categoriaAccion, tAccion, "Acción") &&
+            !dibujarTituloCategoria(categoriaComedia, tComedia, "Comedia") &&
+            !dibujarTituloCategoria(categoriaInfantiles, tInfantiles, "Infantiles")) {
             document.getElementById('sectionBusqueda').innerHTML = `<h1>No hay peliculas</h1>`;
         }
     
