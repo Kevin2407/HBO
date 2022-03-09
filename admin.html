@@ -112,7 +112,7 @@
                     <form onsubmit="guardarPeli(event)" id="formPeliculas">
                         <div class="mb-3">
                             <label class="form-label" id="labelCodigo">Código <span class="text-danger">*</span></label>
-                            <input type="num" id="codigo" class="form-control" onkeyup="validar(this,5)">
+                            <input type="num" id="codigo" class="form-control" onkeyup="validar(this,5)" required>
                             <div class="valid-feedback">
                             </div>
                             <div id="divInvalidCodigo" class="invalid-feedback">
@@ -121,11 +121,11 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nombre <span class="text-danger">*</span></label>
-                            <input type="text" id="nombrePeli" class="form-control" onblur="validar(this,1)">
+                            <input type="text" id="nombrePeli" class="form-control" onblur="validar(this,1)" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Categoria</label>
-                            <select class="form-select" name="categoria" id="categoria">
+                            <select class="form-select" name="categoria" id="categoria" required>
                                 <option value="">Elija una categoria</option>
                                 <option value="Drama">Drama</option>
                                 <option value="Accion">Acción</option>
@@ -135,8 +135,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Descripción <span class="text-danger">*</span></label>
-                            <textarea type="text" id="descripcion" class="form-control"
-                                onkeyup="limiteLetras(this)"></textarea>
+                            <textarea type="text" id="descripcion" class="form-control" onkeyup="limiteLetras(this)" required></textarea>
                             <div class="valid-feedback">
                             </div>
                             <div id="divInvalidDescripcion" class="invalid-feedback">

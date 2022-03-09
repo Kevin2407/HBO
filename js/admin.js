@@ -42,6 +42,7 @@ window.agregarPeli = function () {
     validar(codigo, 2) &&
     validarCodigo(codigo.value) &&
     validar(nombre, 1) &&
+    categoria.value != "" &&
     limiteLetras(descripcion) &&
     validar(img, 4) &&
     validar(video, 1)

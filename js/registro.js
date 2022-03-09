@@ -125,11 +125,26 @@ window.ingresar = function (event) {
     if (!nombreValido) {
         nomUsuBuscado.className = "login-input is-invalid";
         document.getElementById('msjNoCuenta').className = '';
+        Swal.fire({
+            icon: 'error',
+            title: 'Usuario inexistente',
+            text: 'El nombre de usuario introducido no esta registrado',
+            footer: `<div class="container"><p class="login-text">¿No tenés cuenta? <a class="texto-azul" href="registro.html">Registrate</a></p></div>`,
+            confirmButtonColor: '#5f9ea0'
+        })
     } else {
         nomUsuBuscado.className = "login-input is-valid";
         document.getElementById('msjNoCuenta').className = '';
         if (!contraValida) {
             contraBuscada.className = "login-input is-invalid";
+            Swal.fire({
+                icon: 'error',
+                title: 'Contraseña incorrecta',
+                text: 'La contraseña introducida es incorrecta',
+                footer: `<div class="container"><p class="login-text">¿Olvidaste la <span class="texto-azul" onclick="recContra()">contraseña</span>?</p>
+                <p class="login-text">¿No tenés cuenta? <a class="texto-azul" href="registro.html">Registrate</a></p></div>`,
+                confirmButtonColor: '#5f9ea0'
+            })
             document.getElementById('msjNoCuenta').className = '';
         }
     }
