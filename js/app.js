@@ -12,6 +12,12 @@ let comedia = document.getElementById('grillasComedia');
 let categoriaInfantiles = [];
 let infantil = document.getElementById('grillasInfantiles');
 
+// titulos
+let tDrama = document.getElementById('tDrama');
+let tAccion = document.getElementById('tAccion');
+let tComedia = document.getElementById('tComedia');
+let tInfantiles = document.getElementById('tInfantiles');
+
 
 let listaPelicula = [];
 
@@ -139,10 +145,10 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
                 bDrama = false;
             }
             if (categoriaDrama[i].publicado && (filtroSelector.value === "Drama" || filtroSelector.value === "") && (bDrama || filtroTexto.value === "")) {
-                let dramaHTML = `<article class="col-sm-6 col-md-4 col-lg-3" >
+                let dramaHTML = `<article class="" >
                 <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button></article>`;
                 drama.innerHTML += dramaHTML;
-                drama.className = 'row text-center mb-5';
+                drama.className = 'scroll mb-5';
             } else if (drama.innerHTML === `<h5 class="tituloCategorias">Drama</h5>`) {
                 drama.innerHTML = '';
                 drama.className = 'display-none';
