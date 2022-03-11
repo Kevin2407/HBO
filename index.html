@@ -76,9 +76,12 @@
     <!-- <section class="container-fluid m-0 p-0 row"> -->
       <section>
         <div id="tDrama"></div>
-        <div class="display-none" id="grillasDrama">
-          
+      <div class="d-flex justify-content-center" id="caja-drama">
+        <button class="display-none" id="btn-izquierda">‹</button>
+        <div class="scroll mb-5" id="grillasDrama" onscroll="moverPeliculas()">
         </div>
+        <button class="display-none" id="btn-derecha">›</button>
+      </div>
   
         <div id="tAccion"></div>
         <div class="display-none" id="grillasAccion">

@@ -5,6 +5,7 @@
 
 let categoriaDrama = [];
 let drama = document.getElementById('grillasDrama');
+let cajaDrama = document.getElementById('caja-drama');
 let categoriaAccion = [];
 let accion = document.getElementById('grillasAccion');
 let categoriaComedia = [];
@@ -44,6 +45,7 @@ document.querySelector('body').addEventListener('load', dibujarNav);
 function leerPelicula() {  // esta funcion trae los datos del LS 
     let c = 0;
     let linkAnterior = document.referrer;
+    console.log(document.referrer);
     let pagAnterior = "";
     for (let i in linkAnterior) { //obtengo el path del link de la pagina anterior al index.html
         if (linkAnterior[i] == "/") {
@@ -54,7 +56,7 @@ function leerPelicula() {  // esta funcion trae los datos del LS
         }
     }
 
-    if (pagAnterior === "/login.html" && window.location.pathname === "/index.html") { // si el path de la pagina anterior es igual a login.html, aparece el cartel de bienvenida al usuario que acaba de ingresar
+    if ((pagAnterior === "/login.html" || document.referrer === '' || document.referrer === 'http://127.0.0.1:5501/') && (window.location.pathname === "/index.html" || window.location.pathname === "5501/")) { // si el path de la pagina anterior es igual a login.html, aparece el cartel de bienvenida al usuario que acaba de ingresar
         Swal.fire({
             title: 'Bienvenido a HBO GO',
             text: 'En esta plataforma podra ver las mejores series y peliculas',
@@ -105,6 +107,7 @@ function dibujarTituloCategoria(listaCategoria, titulo, nombre) {
 }
 
 function dibujarPeli() { //imprime el codigo de las cards de peliculas en las grillas del index, segun su categoria correspondiente
+    let cDibu;
     if(window.location.pathname === "/index.html"){
         let filtroTexto = document.getElementById('nombreFiltro');
         let filtroSelector = document.getElementById('categoriaFiltro');
@@ -130,6 +133,8 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
         let cont = 0;
     
         // Escribe el codigo HTML de la card en la grilla de drama
+        drama.innerHTML = "";
+        cDibu = 0;
         for (let i in categoriaDrama) {
             cont = 0;
             for (let j in categoriaDrama[i].nombre) {
@@ -144,14 +149,32 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
             } else {
                 bDrama = false;
             }
+
+
+            let dramaHTML = `<article class="peli" >
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 mx-1 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button></article>`;
+
+
             if (categoriaDrama[i].publicado && (filtroSelector.value === "Drama" || filtroSelector.value === "") && (bDrama || filtroTexto.value === "")) {
-                let dramaHTML = `<article class="" >
-                <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button></article>`;
+                drama.style.removeProperty('display');
+                tDrama.style.removeProperty('display');
                 drama.innerHTML += dramaHTML;
-                drama.className = 'scroll mb-5';
-            } else if (drama.innerHTML === `<h5 class="tituloCategorias">Drama</h5>`) {
+                cDibu++;
+                console.log(bDrama,cDibu)
+                if(cDibu > 3){
+                    document.getElementById('btn-izquierda').className = 'btn-flecha btn-izquierda';
+                    document.getElementById('btn-derecha').className = 'btn-flecha btn-derecha';
+                    console.log(cDibu)
+                }else{
+                    document.getElementById('btn-izquierda').className = 'visually-hidden';
+                    document.getElementById('btn-derecha').className = 'visually-hidden';
+                }
+            } else if (drama.innerHTML === ``) {
                 drama.innerHTML = '';
-                drama.className = 'display-none';
+                drama.style.display = "none";
+                tDrama.style.display = "none";
+                document.getElementById('btn-izquierda').className = 'visually-hidden';
+                document.getElementById('btn-derecha').className = 'visually-hidden';
             }
         }
     
@@ -176,7 +199,7 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
                 </article>`;
                 accion.innerHTML += accionHTML;
                 accion.className = 'row text-center mb-5';
-            } else if (accion.innerHTML === `<h5 class="tituloCategorias">Acción</h5>`) {
+            } else{
                 accion.innerHTML = '';
                 accion.className = 'display-none';
             }
@@ -236,6 +259,19 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
             }
         }
     }
+}
+
+function mover(direccion,categoriaScroll){
+    if(direccion === "btn-izquierda"){
+        categoriaScroll.scrollLeft += 700;
+    }else if (direccion === "btn-derecha"){
+        categoriaScroll.scrollLeft -= 700;
+    }
+}
+
+window.moverPeliculas = function(input,categoria){
+    console.log(drama.scrollLeft)
+    mover(input.id,categoria);
 }
 
 
