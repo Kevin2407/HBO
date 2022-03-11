@@ -306,7 +306,7 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
             <button onclick="dibujarModal(this.id)" class="m-0 p-0 mx-1 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaInfantiles[i].codigo}"><img src="img/series/fotos/${categoriaInfantiles[i].imagen}" alt="Pelicula/serie ${categoriaInfantiles[i].nombre}" class="imgSeries"></button></article>`;
 
 
-            if (categoriaInfantiles[i].publicado && (filtroSelector.value === "Infantiles" || filtroSelector.value === "") && (bInfantiles || filtroTexto.value === "")) {
+            if (categoriaInfantiles[i].publicado && (filtroSelector.value === "Infantil" || filtroSelector.value === "") && (bInfantiles || filtroTexto.value === "")) {
                 infantiles.style.removeProperty('display');
                 tInfantiles.style.removeProperty('display');
                 cajaInfantiles.style.removeProperty('display');
