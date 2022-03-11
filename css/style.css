@@ -51,6 +51,12 @@ body{
     transition: background-color 2s;
 }
 
+.navbar-transparente-desplegado{
+    background-image: linear-gradient(to top, rgba(20, 20, 20, 0) 0%, rgba(20, 20, 20, 0.15) 0%, rgba(20, 20, 20, 0.35) 0%, rgba(20, 20, 20, -0.42) 0%, rgb(0, 0, 0) 7%, rgb(0, 0, 0) 0%);
+    background-color: transparent;
+    transition: background-color 2s;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .navbar-scroll-abajo{
         transition: 2000ms;

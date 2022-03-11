@@ -3,7 +3,6 @@ import { Usuario } from "./pelisClass.js";
 let listaUsuarios = [{ nombre: 'Kevin Martín', nomUsuario: 'admin', email: 'kevmartin2001@gmail.com', telefono: '+5493816791746', contrasenia: 'admin', enSesion: false, aprobado: true, admin: true }];
 
 inicializarUsuarios();
-dibujarNav();
 
 window.crearUsuario = function (event) {
 
@@ -226,93 +225,4 @@ window.recContra = function(){
     })
 }
 
-function dibujarNav() {
-    let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
 
-    let usuarioEnSesion;
-    for (let i in _listaUsuarios) {
-        if (_listaUsuarios[i].enSesion) {
-            usuarioEnSesion = _listaUsuarios[i];
-        }
-    }
-
-    if (usuarioEnSesion != undefined && usuarioEnSesion.admin) {
-        let ulNavbar = document.getElementById("ulNavbar");
-        switch (window.location.pathname) {
-            case "/index.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item active">
-                    <a class="nav-link active" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-            case "/contacto.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-            case "/admin.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-            case "/acerca-de.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item active">
-                <a class="nav-link active" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-        }
-    }
-}
-
-// document.querySelector('body').addEventListener('load', dibujarNav);

@@ -29,20 +29,6 @@ let listaPelicula = [];
 // DECLARACIONES DE FUNCIONES
 leerPelicula();
 
-window.onscroll = () => {
-
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("navbarIndex").className = "navbar navbar-expand-lg navbar-dark navbar-scroll-abajo fixed-top";
-    } else {
-        document.getElementById("navbarIndex").className = "navbar navbar-expand-lg navbar-dark navbar-transparente fixed-top";
-    }
-};
-
-if(window.location.pathname === "/index.html"){
-    let modal = document.getElementById('modalDetalle');  //evento llamado solo para detener el video del modal en casi que se cierre el modal mientras este se reproduce, para que no se escuche el ruido del video mientras se continua en la pagina
-    modal.addEventListener('hidden.bs.modal', () => modal.innerHTML = "");
-}
-
 
 // FUNCIONES
 function leerPelicula() {  // esta funcion trae los datos del LS 
