@@ -32,6 +32,7 @@ leerPelicula();
 
 // FUNCIONES
 function leerPelicula() {  // esta funcion trae los datos del LS 
+    console.log(window.location.pathname)
     let c = 0;
     let linkAnterior = document.referrer;
     let pagAnterior = "";
@@ -44,7 +45,7 @@ function leerPelicula() {  // esta funcion trae los datos del LS
         }
     }
 
-    if ((pagAnterior === "/login.html" || document.referrer === '' || document.referrer === 'http://127.0.0.1:5501/') && (window.location.pathname === "/index.html" || window.location.pathname === "5501/")) { // si el path de la pagina anterior es igual a login.html, aparece el cartel de bienvenida al usuario que acaba de ingresar
+    if ((pagAnterior === "/login.html" || document.referrer === '' || document.referrer === 'http://127.0.0.1:5501/') && (window.location.pathname === "/index.html" || window.location.pathname === "/")) { // si el path de la pagina anterior es igual a login.html, aparece el cartel de bienvenida al usuario que acaba de ingresar
         Swal.fire({
             title: 'Bienvenido a HBO GO',
             text: 'En esta plataforma podra ver las mejores series y peliculas',
@@ -55,7 +56,6 @@ function leerPelicula() {  // esta funcion trae los datos del LS
             cancelButtonColor: '#5f9ea0',
         });
     }
-    console.log(localStorage.length > 0)
 
     if (localStorage.length > 0) {  // si hay una lista en el LS
         listaPelicula = JSON.parse(localStorage.getItem('listaPelisKey'));
@@ -200,11 +200,9 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
                 document.getElementById('btn-derechaA').style.removeProperty('display');
                 accion.innerHTML += accionHTML;
                 cDibu++;
-                console.log(bAccion,cDibu)
                 if(cDibu > 3){
                     document.getElementById('btn-izquierdaA').className = 'btn-flecha btn-izquierda';
                     document.getElementById('btn-derechaA').className = 'btn-flecha btn-derecha';
-                    console.log(cDibu)
                 }else{
                     document.getElementById('btn-izquierdaA').style.display = "none";
                 document.getElementById('btn-derechaA').style.display = "none";
@@ -250,11 +248,9 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
                 document.getElementById('btn-derechaC').style.removeProperty('display');
                 comedia.innerHTML += comediaHTML;
                 cDibu++;
-                console.log(bComedia,cDibu)
                 if(cDibu > 3){
                     document.getElementById('btn-izquierdaC').className = 'btn-flecha btn-izquierda';
                     document.getElementById('btn-derechaC').className = 'btn-flecha btn-derecha';
-                    console.log(cDibu)
                 }else{
                     document.getElementById('btn-izquierdaC').style.display = "none";
                 document.getElementById('btn-derechaC').style.display = "none";
@@ -303,7 +299,6 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
                 if(cDibu > 3){
                     document.getElementById('btn-izquierdaI').className = 'btn-flecha btn-izquierda';
                     document.getElementById('btn-derechaI').className = 'btn-flecha btn-derecha';
-                    console.log(cDibu)
                 }else{
                     document.getElementById('btn-izquierdaI').style.display = "none";
                 document.getElementById('btn-derechaI').style.display = "none";
@@ -320,17 +315,12 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
     }
 
 
-function mover(direccion,categoriaScroll){
+window.mover = function(direccion,categoriaScroll){
     if(direccion === "izquierda"){
         categoriaScroll.scrollLeft -= 700;
     }else if (direccion === "derecha"){
         categoriaScroll.scrollLeft += 700;
     }
-}
-
-window.moverPeliculas = function(direccion,categoria){
-    console.log(drama.scrollLeft)
-    mover(direccion,categoria);
 }
 
 

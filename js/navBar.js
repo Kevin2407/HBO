@@ -45,16 +45,13 @@ btnHambur.addEventListener("click", () => {
 
 function dibujarNav() {
     let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
+    let ulNavbar = document.getElementById("ulNavbar");
 
-    let usuarioEnSesion;
-    for (let i in _listaUsuarios) {
-        if (_listaUsuarios[i].enSesion) {
-            usuarioEnSesion = _listaUsuarios[i];
-        }
-    }
+    let usuarioEnSesion = _listaUsuarios.find(usuario => usuario.enSesion);
+
+    console.log(usuarioEnSesion)
 
     if (usuarioEnSesion != undefined && usuarioEnSesion.admin) {
-        let ulNavbar = document.getElementById("ulNavbar");
         switch (window.location.pathname) {
             case "/index.html":
                 ulNavbar.innerHTML = `
@@ -74,6 +71,24 @@ function dibujarNav() {
                     <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
                 </li>`;
                 break;
+                case "/":
+                    ulNavbar.innerHTML = `
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Administración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
+                    </li>`;
+                    break;
             case "/contacto.html":
                 ulNavbar.innerHTML = `
                 <li class="nav-item">
