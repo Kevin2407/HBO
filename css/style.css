@@ -459,16 +459,20 @@ textarea {
     height: 260px;
     margin-bottom: 20px;
     width: 91%;
+    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 }
-
 .scroll::-webkit-scrollbar {
-    width: 3px;
+    display: none;
 }
-.scroll::-webkit-scrollbar-track {
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+body::-webkit-scrollbar-track {
     background: transparent;
 }
-.scroll::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     background-color: #5f9ea0bb;
     ;
     border-radius: 20px;

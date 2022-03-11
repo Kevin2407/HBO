@@ -75,27 +75,36 @@
     
     <!-- <section class="container-fluid m-0 p-0 row"> -->
       <section>
-        <div id="tDrama"></div>
-      <div class="d-flex justify-content-center" id="caja-drama">
-        <button class="display-none" id="btn-izquierda">‹</button>
-        <div class="scroll mb-5" id="grillasDrama" onscroll="moverPeliculas()">
+      <div id="tDrama" style="display: none;"></div>
+      <div class="d-flex justify-content-center" style="display: none;" id="caja-drama">
+        <button class="" id="btn-izquierdaD" style="display: none;" onclick="moverPeliculas('izquierda',drama)">‹</button>
+        <div class="scroll mb-5" style="display: none;" id="grillasDrama">
         </div>
-        <button class="display-none" id="btn-derecha">›</button>
+        <button class="" id="btn-derechaD" style="display: none;" onclick="moverPeliculas('derecha',drama)">›</button>
       </div>
   
-        <div id="tAccion"></div>
-        <div class="display-none" id="grillasAccion">
-  
+        <div id="tAccion" style="display: none;"></div>
+        <div class="d-flex justify-content-center" style="display: none;" id="caja-accion">
+          <button class="" id="btn-izquierdaA" style="display: none;" onclick="moverPeliculas('izquierda',accion)">‹</button>
+          <div class="scroll mb-5" style="display: none;" id="grillasAccion">
+          </div>
+          <button class="" id="btn-derechaA" style="display: none;" onclick="moverPeliculas('derecha',accion)">›</button>
         </div>
   
-        <div id="tComedia"></div>
-        <div class="display-none" id="grillasComedia">
-  
+        <div id="tComedia" style="display: none;"></div>
+        <div class="d-flex justify-content-center" style="display: none;" id="caja-comedia">
+          <button class="" id="btn-izquierdaC" style="display: none;" onclick="moverPeliculas('izquierda',comedia)">‹</button>
+          <div class="scroll mb-5" id="grillasComedia" style="display: none;">
+          </div>
+          <button class="" id="btn-derechaC" style="display: none;" onclick="moverPeliculas('derecha',comedia)">›</button>
         </div>
         
-        <div id="tInfantiles"></div>
-        <div class="display-none" id="grillasInfantiles">
-  
+        <div id="tInfantiles" style="display: none;"></div>
+        <div class="d-flex justify-content-center" style="display: none;" id="caja-infantiles">
+          <button class="" id="btn-izquierdaI" style="display: none;" onclick="moverPeliculas('izquierda',infantiles)">‹</button>
+          <div class="scroll mb-5" id="grillasInfantiles" style="display: none;">
+          </div>
+          <button class="" id="btn-derechaI" style="display: none;" onclick="moverPeliculas('derecha',infantiles)">›</button>
         </div>
       </section>
 

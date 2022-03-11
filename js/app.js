@@ -8,10 +8,14 @@ let drama = document.getElementById('grillasDrama');
 let cajaDrama = document.getElementById('caja-drama');
 let categoriaAccion = [];
 let accion = document.getElementById('grillasAccion');
+let cajaAccion = document.getElementById('caja-accion');
 let categoriaComedia = [];
 let comedia = document.getElementById('grillasComedia');
+let cajaComedia = document.getElementById('caja-comedia');
 let categoriaInfantiles = [];
-let infantil = document.getElementById('grillasInfantiles');
+let infantiles = document.getElementById('grillasInfantiles');
+let cajaInfantiles = document.getElementById('caja-infantiles');
+
 
 // titulos
 let tDrama = document.getElementById('tDrama');
@@ -45,7 +49,6 @@ document.querySelector('body').addEventListener('load', dibujarNav);
 function leerPelicula() {  // esta funcion trae los datos del LS 
     let c = 0;
     let linkAnterior = document.referrer;
-    console.log(document.referrer);
     let pagAnterior = "";
     for (let i in linkAnterior) { //obtengo el path del link de la pagina anterior al index.html
         if (linkAnterior[i] == "/") {
@@ -152,36 +155,40 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
 
 
             let dramaHTML = `<article class="peli" >
-            <button onclick="dibujarModal(this.id)" class="m-0 p-0 mx-1 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/drama/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button></article>`;
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 mx-1 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaDrama[i].codigo}"><img src="img/series/fotos/${categoriaDrama[i].imagen}" alt="Pelicula/serie ${categoriaDrama[i].nombre}" class="imgSeries"></button></article>`;
 
 
             if (categoriaDrama[i].publicado && (filtroSelector.value === "Drama" || filtroSelector.value === "") && (bDrama || filtroTexto.value === "")) {
                 drama.style.removeProperty('display');
                 tDrama.style.removeProperty('display');
+                cajaDrama.style.removeProperty('display');
+                document.getElementById('btn-izquierdaD').style.removeProperty('display');
+                document.getElementById('btn-derechaD').style.removeProperty('display');
                 drama.innerHTML += dramaHTML;
                 cDibu++;
-                console.log(bDrama,cDibu)
                 if(cDibu > 3){
-                    document.getElementById('btn-izquierda').className = 'btn-flecha btn-izquierda';
-                    document.getElementById('btn-derecha').className = 'btn-flecha btn-derecha';
-                    console.log(cDibu)
+                    document.getElementById('btn-izquierdaD').className = 'btn-flecha btn-izquierda';
+                    document.getElementById('btn-derechaD').className = 'btn-flecha btn-derecha';
                 }else{
-                    document.getElementById('btn-izquierda').className = 'visually-hidden';
-                    document.getElementById('btn-derecha').className = 'visually-hidden';
+                    document.getElementById('btn-izquierdaD').style.display = "none";
+                    document.getElementById('btn-derechaD').style.display = "none";
                 }
             } else if (drama.innerHTML === ``) {
                 drama.innerHTML = '';
                 drama.style.display = "none";
                 tDrama.style.display = "none";
-                document.getElementById('btn-izquierda').className = 'visually-hidden';
-                document.getElementById('btn-derecha').className = 'visually-hidden';
+                cajaDrama.style.display= "none";
+                document.getElementById('btn-izquierdaD').style.display = "none";
+                document.getElementById('btn-derechaD').style.display = "none";
             }
         }
     
         // Escribe el codigo HTML de la card en la grilla de accion
+        accion.innerHTML = "";
+        cDibu = 0;
         for (let i in categoriaAccion) {
             cont = 0;
-            for (let j in filtroTexto.value) {
+            for (let j in categoriaAccion[i].nombre) {
                 if (filtroTexto.value[j] != undefined) {
                     if (filtroTexto.value[j] === categoriaAccion[i].nombre[j] || filtroTexto.value[j].toUpperCase() === categoriaAccion[i].nombre[j] || filtroTexto.value[j].toLowerCase() === categoriaAccion[i].nombre[j]) {
                         cont++;
@@ -193,22 +200,45 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
             } else {
                 bAccion = false;
             }
+
+
+            let accionHTML = `<article class="peli" >
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 mx-1 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaAccion[i].codigo}"><img src="img/series/fotos/${categoriaAccion[i].imagen}" alt="Pelicula/serie ${categoriaAccion[i].nombre}" class="imgSeries"></button></article>`;
+
+
             if (categoriaAccion[i].publicado && (filtroSelector.value === "Accion" || filtroSelector.value === "") && (bAccion || filtroTexto.value === "")) {
-                let accionHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
-                <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaAccion[i].codigo}"><img src="img/series/drama/${categoriaAccion[i].imagen}" alt="Pelicula/serie ${categoriaAccion[i].nombre}" class="imgSeries"></button>
-                </article>`;
+                accion.style.removeProperty('display');
+                tAccion.style.removeProperty('display');
+                cajaAccion.style.removeProperty('display');
+                document.getElementById('btn-izquierdaA').style.removeProperty('display');
+                document.getElementById('btn-derechaA').style.removeProperty('display');
                 accion.innerHTML += accionHTML;
-                accion.className = 'row text-center mb-5';
-            } else{
+                cDibu++;
+                console.log(bAccion,cDibu)
+                if(cDibu > 3){
+                    document.getElementById('btn-izquierdaA').className = 'btn-flecha btn-izquierda';
+                    document.getElementById('btn-derechaA').className = 'btn-flecha btn-derecha';
+                    console.log(cDibu)
+                }else{
+                    document.getElementById('btn-izquierdaA').style.display = "none";
+                document.getElementById('btn-derechaA').style.display = "none";
+                }
+            } else if (accion.innerHTML === ``) {
                 accion.innerHTML = '';
-                accion.className = 'display-none';
+                accion.style.display = "none";
+                tAccion.style.display = "none";
+                cajaAccion.style.display= "none";
+                document.getElementById('btn-izquierdaA').style.display = "none";
+                document.getElementById('btn-derechaA').style.display = "none";
             }
         }
     
         // Escribe el codigo HTML de la card en la grilla de comedia
+        comedia.innerHTML = "";
+        cDibu = 0;
         for (let i in categoriaComedia) {
             cont = 0;
-            for (let j in filtroTexto.value) {
+            for (let j in categoriaComedia[i].nombre) {
                 if (filtroTexto.value[j] != undefined) {
                     if (filtroTexto.value[j] === categoriaComedia[i].nombre[j] || filtroTexto.value[j].toUpperCase() === categoriaComedia[i].nombre[j] || filtroTexto.value[j].toLowerCase() === categoriaComedia[i].nombre[j]) {
                         cont++;
@@ -220,22 +250,45 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
             } else {
                 bComedia = false;
             }
+
+
+            let comediaHTML = `<article class="peli" >
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 mx-1 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaComedia[i].codigo}"><img src="img/series/fotos/${categoriaComedia[i].imagen}" alt="Pelicula/serie ${categoriaComedia[i].nombre}" class="imgSeries"></button></article>`;
+
+
             if (categoriaComedia[i].publicado && (filtroSelector.value === "Comedia" || filtroSelector.value === "") && (bComedia || filtroTexto.value === "")) {
-                let comediaHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
-                <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaComedia[i].codigo}"><img src="img/series/drama/${categoriaComedia[i].imagen}" alt="Pelicula/serie ${categoriaComedia[i].nombre}" class="imgSeries"></button>
-                </article>`;
+                comedia.style.removeProperty('display');
+                tComedia.style.removeProperty('display');
+                cajaComedia.style.removeProperty('display');
+                document.getElementById('btn-izquierdaC').style.removeProperty('display');
+                document.getElementById('btn-derechaC').style.removeProperty('display');
                 comedia.innerHTML += comediaHTML;
-                comedia.className = 'row text-center mb-5';
-            } else if (comedia.innerHTML === `<h5 class="tituloCategorias">Comedia</h5>`) {
+                cDibu++;
+                console.log(bComedia,cDibu)
+                if(cDibu > 3){
+                    document.getElementById('btn-izquierdaC').className = 'btn-flecha btn-izquierda';
+                    document.getElementById('btn-derechaC').className = 'btn-flecha btn-derecha';
+                    console.log(cDibu)
+                }else{
+                    document.getElementById('btn-izquierdaC').style.display = "none";
+                document.getElementById('btn-derechaC').style.display = "none";
+                }
+            } else if (comedia.innerHTML === ``) {
                 comedia.innerHTML = '';
-                comedia.className = 'display-none';
+                comedia.style.display = "none";
+                tComedia.style.display = "none";
+                cajaComedia.style.display= "none";
+                document.getElementById('btn-izquierdaC').style.display = "none";
+                document.getElementById('btn-derechaC').style.display = "none";
             }
         }
     
         // Escribe el codigo HTML de la card en la grilla de infantiles
+        infantiles.innerHTML = "";
+        cDibu = 0;
         for (let i in categoriaInfantiles) {
             cont = 0;
-            for (let j in filtroTexto.value) {
+            for (let j in categoriaInfantiles[i].nombre) {
                 if (filtroTexto.value[j] != undefined) {
                     if (filtroTexto.value[j] === categoriaInfantiles[i].nombre[j] || filtroTexto.value[j].toUpperCase() === categoriaInfantiles[i].nombre[j] || filtroTexto.value[j].toLowerCase() === categoriaInfantiles[i].nombre[j]) {
                         cont++;
@@ -247,31 +300,51 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
             } else {
                 bInfantiles = false;
             }
-            if (categoriaInfantiles[i].publicado && (filtroSelector.value === "Infantil" || filtroSelector.value === "") && (bInfantiles || filtroTexto.value === "")) {
-                let infantilHTML = `<article class="col-sm-6 col-md-4 col-lg-3">
-                <button onclick="dibujarModal(this.id)" class="m-0 p-0 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaInfantiles[i].codigo}"><img src="img/series/drama/${categoriaInfantiles[i].imagen}" alt="Pelicula/serie ${categoriaInfantiles[i].nombre}" class="imgSeries"></button>
-                </article>`;
-                infantil.innerHTML += infantilHTML;
-                infantil.className = 'row text-center mb-5';
-            } else if (infantil.innerHTML === `<h5 class="tituloCategorias">Infantiles</h5>`) {
-                infantil.innerHTML = '';
-                infantil.className = 'display-none';
+
+
+            let infantilesHTML = `<article class="peli" >
+            <button onclick="dibujarModal(this.id)" class="m-0 p-0 mx-1 imgIndex" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalle" id="${categoriaInfantiles[i].codigo}"><img src="img/series/fotos/${categoriaInfantiles[i].imagen}" alt="Pelicula/serie ${categoriaInfantiles[i].nombre}" class="imgSeries"></button></article>`;
+
+
+            if (categoriaInfantiles[i].publicado && (filtroSelector.value === "Infantiles" || filtroSelector.value === "") && (bInfantiles || filtroTexto.value === "")) {
+                infantiles.style.removeProperty('display');
+                tInfantiles.style.removeProperty('display');
+                cajaInfantiles.style.removeProperty('display');
+                document.getElementById('btn-izquierdaI').style.removeProperty('display');
+                document.getElementById('btn-derechaI').style.removeProperty('display');
+                infantiles.innerHTML += infantilesHTML;
+                cDibu++;
+                if(cDibu > 3){
+                    document.getElementById('btn-izquierdaI').className = 'btn-flecha btn-izquierda';
+                    document.getElementById('btn-derechaI').className = 'btn-flecha btn-derecha';
+                    console.log(cDibu)
+                }else{
+                    document.getElementById('btn-izquierdaI').style.display = "none";
+                document.getElementById('btn-derechaI').style.display = "none";
+                }
+            } else if (infantiles.innerHTML === ``) {
+                infantiles.innerHTML = '';
+                infantiles.style.display = "none";
+                tInfantiles.style.display = "none";
+                cajaInfantiles.style.display= "none";
+                document.getElementById('btn-izquierdaI').style.display = "none";
+                document.getElementById('btn-derechaI').style.display = "none";
             }
         }
     }
 }
 
 function mover(direccion,categoriaScroll){
-    if(direccion === "btn-izquierda"){
-        categoriaScroll.scrollLeft += 700;
-    }else if (direccion === "btn-derecha"){
+    if(direccion === "izquierda"){
         categoriaScroll.scrollLeft -= 700;
+    }else if (direccion === "derecha"){
+        categoriaScroll.scrollLeft += 700;
     }
 }
 
-window.moverPeliculas = function(input,categoria){
+window.moverPeliculas = function(direccion,categoria){
     console.log(drama.scrollLeft)
-    mover(input.id,categoria);
+    mover(direccion,categoria);
 }
 
 
@@ -311,7 +384,7 @@ window.dibujarModal = function (id) {    // funcion para escribir los datos del 
         <section class="contenedorDetalleImg" id="seccionDetalle">
           <div class="contenedor">
             <button class="btnCerrar bg-transparent border-0" type="button" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark fa-2x text-light"></i></button>
-            <img src="img/series/drama/${peliAbierta.imagen}" class="imagenDetalle rounded-3" alt="${peliAbierta.nombre}">
+            <img src="img/series/fotos/${peliAbierta.imagen}" class="imagenDetalle rounded-3" alt="${peliAbierta.nombre}">
             <div class="texto-centrado">
               <div class="botonesCabecera">
                 <a href="error404.html">
@@ -355,7 +428,7 @@ function dibujarDestacados() {
     
             if (destacado != undefined) {
                 let sectionDestacado = `    
-            <img class="img-cortada-centrada" src="img/series/drama/${destacado.imagen}" alt="${destacado.nombre}">
+            <img class="img-cortada-centrada" src="img/series/fotos/${destacado.imagen}" alt="${destacado.nombre}">
             <div class="texto-centrado">
                 <div>
                     <h2>${destacado.nombre}</h2>
