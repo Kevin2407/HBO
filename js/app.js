@@ -43,7 +43,6 @@ if(window.location.pathname === "/index.html"){
     modal.addEventListener('hidden.bs.modal', () => modal.innerHTML = "");
 }
 
-document.querySelector('body').addEventListener('load', dibujarNav);
 
 // FUNCIONES
 function leerPelicula() {  // esta funcion trae los datos del LS 
@@ -70,6 +69,7 @@ function leerPelicula() {  // esta funcion trae los datos del LS
             cancelButtonColor: '#5f9ea0',
         });
     }
+    console.log(localStorage.length > 0)
 
     if (localStorage.length > 0) {  // si hay una lista en el LS
         listaPelicula = JSON.parse(localStorage.getItem('listaPelisKey'));
@@ -111,7 +111,7 @@ function dibujarTituloCategoria(listaCategoria, titulo, nombre) {
 
 function dibujarPeli() { //imprime el codigo de las cards de peliculas en las grillas del index, segun su categoria correspondiente
     let cDibu;
-    if(window.location.pathname === "/index.html"){
+
         let filtroTexto = document.getElementById('nombreFiltro');
         let filtroSelector = document.getElementById('categoriaFiltro');
     
@@ -332,7 +332,7 @@ function dibujarPeli() { //imprime el codigo de las cards de peliculas en las gr
             }
         }
     }
-}
+
 
 function mover(direccion,categoriaScroll){
     if(direccion === "izquierda"){
@@ -420,7 +420,7 @@ window.dibujarModal = function (id) {    // funcion para escribir los datos del 
 }
 
 function dibujarDestacados() {
-    if(window.location.pathname === "/index.html"){
+
         let _listaPelis = JSON.parse(localStorage.getItem('listaPelisKey'));  // trae el array de peliculas de LS a la variable _listaPelis
         if (_listaPelis.length > 0) {
     
@@ -447,136 +447,5 @@ function dibujarDestacados() {
             }
     
         }
-    }
 }
 
-function dibujarNav() {
-    let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
-
-    let usuarioEnSesion
-    for (let i in _listaUsuarios) {
-        if (_listaUsuarios[i].enSesion) {
-            usuarioEnSesion = _listaUsuarios[i];
-        }
-    }
-
-    if (usuarioEnSesion.admin) {
-        let ulNavbar = document.getElementById("ulNavbar");
-        switch (window.location.pathname) {
-            case "/index.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item active">
-                    <a class="nav-link active" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-            case "/contacto.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-            case "/admin.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-            case "/acerca-de.html":
-                ulNavbar.innerHTML = `
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-                <li class="nav-item active">
-                <a class="nav-link active" href="acerca-de.html">Acerca de nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.html">Administración</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" onclick="cerrarSesion()">Cerrar Sesión</a>
-                </li>`;
-                break;
-        }
-    }
-}
-
-
-function enviarMail(event) {
-    event.preventDefault();
-    // envioelmail.then(funcion si todo salio bien, funcion cuando algo salio mal)
-    emailjs.send("service_2qem7iv","template_44pwlfj", {
-        to_name: "Administrador",
-        from_name: document.getElementById('email').value,
-        message_html: `Nombre y Apellido: ${document.getElementById('nombreApellido').value} -
-        Telefono: ${document.getElementById('numeroTelefono').value} -
-        Consulta: ${document.getElementById('consulta').value}`,
-    }).then(
-        function (response) {
-            console.log(response);
-            // vaciar inputs
-            document.getElementById('nombreApellido').value = "";
-            document.getElementById('nombreApellido').className = "form-control";
-            document.getElementById('email').value = "";
-            document.getElementById('email').className = "form-control";
-            document.getElementById('numeroTelefono').value = "";
-            document.getElementById('numeroTelefono').className = "form-control";
-            document.getElementById('consulta').value = "";
-            document.getElementById('consulta').className = "form-control";
-
-            // agregar el alerta que todo salio bien
-            Swal.fire({
-                title: `Su consulta fue enviada`,
-                showConfirmButton: true,
-                confirmButtonText: 'Ok',
-                confirmButtonColor: '#5f9ea0',
-                })
-        }, function (error) {
-            console.log(error);
-            Swal.fire({
-                title: `Hubo un error al enviar su consulta. Intente nuevamente mas tarde`,
-                showConfirmButton: true,
-                confirmButtonText: 'Ok',
-                confirmButtonColor: '#5f9ea0',
-                })
-        }
-    )
-}

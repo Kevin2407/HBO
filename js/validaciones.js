@@ -120,8 +120,44 @@ function compararContras(contra1,contra2){
   }
 }
 
-function compararUsuarios(nombreDeUsuario){
-  let _listaUsuarios = JSON.parse(localStorage.getItem('listaUsuariosLS'));
 
-  _
+function enviarMail(event) {
+  event.preventDefault();
+  // envioelmail.then(funcion si todo salio bien, funcion cuando algo salio mal)
+  emailjs.send("service_2qem7iv","template_44pwlfj", {
+      to_name: "Administrador",
+      from_name: document.getElementById('email').value,
+      message_html: `Nombre y Apellido: ${document.getElementById('nombreApellido').value} -
+      Telefono: ${document.getElementById('numeroTelefono').value} -
+      Consulta: ${document.getElementById('consulta').value}`,
+  }).then(
+      function (response) {
+          console.log(response);
+          // vaciar inputs
+          document.getElementById('nombreApellido').value = "";
+          document.getElementById('nombreApellido').className = "form-control";
+          document.getElementById('email').value = "";
+          document.getElementById('email').className = "form-control";
+          document.getElementById('numeroTelefono').value = "";
+          document.getElementById('numeroTelefono').className = "form-control";
+          document.getElementById('consulta').value = "";
+          document.getElementById('consulta').className = "form-control";
+
+          // agregar el alerta que todo salio bien
+          Swal.fire({
+              title: `Su consulta fue enviada`,
+              showConfirmButton: true,
+              confirmButtonText: 'Ok',
+              confirmButtonColor: '#5f9ea0',
+              })
+      }, function (error) {
+          console.log(error);
+          Swal.fire({
+              title: `Hubo un error al enviar su consulta. Intente nuevamente mas tarde`,
+              showConfirmButton: true,
+              confirmButtonText: 'Ok',
+              confirmButtonColor: '#5f9ea0',
+              })
+      }
+  )
 }
