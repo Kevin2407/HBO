@@ -216,7 +216,7 @@ window.modificarPelis = function (btnEditar) {
 
   // buscar el objeto a modificar
   let peliEncontrada = listaPelis.find((pelic) => {
-    return pelic.codigo === btnEditar.id;
+    return pelic.codigo == btnEditar.id;
   });
 
   console.log(document.getElementById('publiCheck'));

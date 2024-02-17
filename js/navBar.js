@@ -49,7 +49,6 @@ function dibujarNav() {
 
     let usuarioEnSesion = _listaUsuarios.find(usuario => usuario.enSesion);
 
-    console.log(usuarioEnSesion)
 
     if (usuarioEnSesion != undefined && usuarioEnSesion.admin) {
         switch (window.location.pathname) {
